@@ -1,7 +1,4 @@
 @import 'vars';
-@import 'container';
-@import 'button';
-@import 'navbar';
 
 body {
     margin: 0;
@@ -13,3 +10,7 @@ body {
 code {
     font-family: $code-font-stack;
   }
+
+@import '/partials/container';
+@import '/partials/button';
+@import '/partials/navbar';

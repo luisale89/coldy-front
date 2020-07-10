@@ -16,7 +16,12 @@ monospace;
 
 @mixin important-text {
     color: $color-warning;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     border: 1px solid $color-warning;
+}
+
+@mixin info-text {
+    color: $color-info;
+    font-size: 14px;
 }
