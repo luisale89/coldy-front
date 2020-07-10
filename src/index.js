@@ -6,6 +6,9 @@ import * as serviceWorker from './serviceWorker';
 //include your index.scss file into the bundle
 import "./styles/index.scss";
 
+//include custom javascript code
+import "./websocket/test.js";
+
 ReactDOM.render(<Layout />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
