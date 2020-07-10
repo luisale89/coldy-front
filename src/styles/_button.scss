@@ -1,0 +1,44 @@
+%btn {
+    background-color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0px 5px;
+}
+
+.btn-primary {
+    @extend %btn;
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-primary;
+}
+
+.btn-success {
+    @extend %btn;
+    background-color: $color-success;
+}
+
+.btn-warning {
+    @extend %btn;
+    background-color: $color-warning;
+}
+
+.btn-info {
+    @extend %btn;
+    background-color: $color-info;
+}
+
+.btn-danger {
+    @include important-text;
+    background-color: $color-danger;
+}
+
+.btn-outline-primary {
+    @extend %btn;
+    border-color: $color-danger;
+    color: $color-primary;
+}

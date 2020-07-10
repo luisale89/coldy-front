@@ -1,5 +1,7 @@
-@import './vars.scss';
-@import './nav.scss';
+@import 'vars';
+@import 'container';
+@import 'button';
+@import 'navbar';
 
 body {
     margin: 0;
@@ -9,5 +11,5 @@ body {
   }
   
 code {
-    font-family: $code-font-stack
+    font-family: $code-font-stack;
   }
