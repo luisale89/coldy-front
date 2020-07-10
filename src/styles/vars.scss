@@ -14,14 +14,44 @@ sans-serif;
 $code-font-stack: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 monospace;
 
-%container-fluid {
-    max-width: 100%;
-    padding: 0px 10px;
-    background-color: $color-bg;
-}
-
 %container {
     max-width: 100%;
+    display: flex;
+}
+
+.container {
+    @extend %container;
     padding: 0px 50px;
-    background-color: $color-bg;
+}
+
+.container-fluid {
+    @extend %container;
+    padding: 0px;
+}
+
+%btn {
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0px 5px;
+}
+
+.btn-primary {
+    @extend %btn;
+    background-color: $color-primary;
+}
+
+.btn-success {
+    @extend %btn;
+    background-color: $color-success;
+}
+
+.btn-warning {
+    @extend %btn;
+    background-color: $color-warning;
 }
