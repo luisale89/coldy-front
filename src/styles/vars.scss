@@ -1,0 +1,27 @@
+$color-primary: #2969b0;
+$color-secondary: #3081dd;
+$color-success: #2ecc71;
+$color-danger: #e25041;
+$color-warning: #fac51c;
+$color-bg: #f1f5f7;
+$color-info: #d9edf7;
+$text-color-info: #31708f;
+
+$main-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+
+$code-font-stack: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+monospace;
+
+%container-fluid {
+    max-width: 100%;
+    padding: 0px 10px;
+    background-color: $color-bg;
+}
+
+%container {
+    max-width: 100%;
+    padding: 0px 50px;
+    background-color: $color-bg;
+}

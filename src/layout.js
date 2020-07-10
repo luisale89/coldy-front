@@ -3,10 +3,11 @@ import { Router, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import history from './views/history';
 
-import { Home1 } from "./views/home1";
-import injectContext from "../src/store/appContext";
+import { Dashboard_index } from "./views/dashboard-index";
 
 import { Navbar } from "./component/navbar";
+
+import injectContext from "../src/store/appContext";
 
 //create your first component
 export const Layout = () => {
@@ -21,7 +22,7 @@ export const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={Home1} />
+						<Route exact path="/" component={Dashboard_index} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 				</ScrollToTop>
