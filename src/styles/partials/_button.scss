@@ -1,38 +1,19 @@
-@mixin btn($bg-color, $text-color) {
+.btn {
     padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border: none;
     font-size: 16px;
     border-radius: 4px;
     margin: 2px;
-    background-color: $bg-color;
-    color: $text-color;
     cursor: pointer;
-    transition: background-color 0.2s;
-    &:hover {
-        background-color: darken($bg-color, 15%);
-    };
-    &:focus {
-        outline: none;
-        box-shadow: 0px 0px 6px $bg-color;
-    };
+    transition: background-color 0.2s, color 0.2s;
 }
 
 @mixin btn-outline($main-color) {
-    padding: 6px 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     border: 1px solid $main-color;
-    font-size: 16px;
-    border-radius: 4px;
-    margin: 2px;
     background-color: rgba($color: $main-color, $alpha: 0);
     color: $main-color;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
     &:hover {
         background-color: rgba($color: $main-color, $alpha: 1.0);
         color: #fff;
@@ -43,9 +24,23 @@
     };
 }
 
+@mixin btn($main-color) {
+    background-color: $main-color;
+    color: #fff;
+    border: 1px solid $main-color;
+    &:hover {
+        background-color: darken($color: $main-color, $amount: 15%);
+        color: #fff;
+    };
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 6px $main-color;
+    };
+}
+
 
 .btn-primary {
-    @include btn($color-primary, #fff)
+    @include btn($color-primary)
 }
 
 .btn-outline-primary {
@@ -53,7 +48,7 @@
 }
 
 .btn-success {
-    @include btn($color-success, #fff)
+    @include btn($color-success)
 }
 
 .btn-outline-success {
@@ -61,7 +56,7 @@
 }
 
 .btn-warning {
-    @include btn($color-warning, #fff)
+    @include btn($color-warning)
 }
 
 .btn-outline-warning {
@@ -69,7 +64,7 @@
 }
 
 .btn-danger {
-    @include btn($color-danger, #fff)
+    @include btn($color-danger)
 }
 
 .btn-outline-danger {
@@ -77,7 +72,7 @@
 }
 
 .btn-info {
-    @include btn($color-info, #fff)
+    @include btn($color-info)
 }
 
 .btn-outline-info {

@@ -9,16 +9,16 @@ export const Dashboard_index = () => {
     return (
         <div className="dashb-container-fluid">
             Hola Mundo, this will be the index dashboard
-            <button className="btn-primary">button1</button>
-            <button className="btn-success">button1</button>
-            <button className="btn-danger">button1</button>
-            <button className="btn-warning">button1</button>
-            <button className="btn-info">button1</button>
-            <button className="btn-outline-primary">button1</button>
-            <button className="btn-outline-success">button1</button>
-            <button className="btn-outline-warning">button1</button>
-            <button className="btn-outline-danger">button1</button>
-            <button className="btn-outline-info">button1</button>
+            <button className="btn btn-primary">button1</button>
+            <button className="btn btn-success">button1</button>
+            <button className="btn btn-danger">button1</button>
+            <button className="btn btn-warning">button1</button>
+            <button className="btn btn-info">button1</button>
+            <button className="btn btn-outline-primary">button1</button>
+            <button className="btn btn-outline-success">button1</button>
+            <button className="btn btn-outline-warning">button1</button>
+            <button className="btn btn-outline-danger">button1</button>
+            <button className="btn btn-outline-info">button1</button>
         </div>
     )
 }
