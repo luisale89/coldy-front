@@ -75,3 +75,11 @@
 .btn-outline-danger {
     @include btn-outline($color-danger)
 }
+
+.btn-info {
+    @include btn($color-info, #fff)
+}
+
+.btn-outline-info {
+    @include btn-outline($color-info)
+}

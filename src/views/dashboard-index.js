@@ -13,10 +13,12 @@ export const Dashboard_index = () => {
             <button className="btn-success">button1</button>
             <button className="btn-danger">button1</button>
             <button className="btn-warning">button1</button>
+            <button className="btn-info">button1</button>
             <button className="btn-outline-primary">button1</button>
             <button className="btn-outline-success">button1</button>
             <button className="btn-outline-warning">button1</button>
             <button className="btn-outline-danger">button1</button>
+            <button className="btn-outline-info">button1</button>
         </div>
     )
 }
