@@ -8,7 +8,13 @@ export const Dashboard_index = () => {
 
     return (
         <div className="dashb-container-fluid">
-            Hola Mundo, this will be the index dashboard
+            <div class="row">
+                <div class="col-md-3">...</div>
+                <div class="col-md-9">...</div>
+            </div>
+            <div className="row">
+                <div class="col-lg-12">...</div>
+            </div>
             <button className="btn btn-primary">button1</button>
             <button className="btn btn-success">button1</button>
             <button className="btn btn-danger">button1</button>

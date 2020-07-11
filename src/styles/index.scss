@@ -9,6 +9,7 @@ body {
     font-family: $main-font-stack;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: $color-bg;
   }
   
 code {
@@ -16,6 +17,7 @@ code {
   }
 
 
+@import '/partials/layout';
 @import '/partials/container';
 @import '/partials/button';
 @import '/partials/navbar';
