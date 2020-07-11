@@ -1,44 +1,77 @@
-%btn {
-    background-color: white;
-    padding: 10px 24px;
+@mixin btn($bg-color, $text-color) {
+    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border: 1px solid;
+    border: none;
     font-size: 16px;
     border-radius: 4px;
-    margin: 0px 5px;
+    margin: 2px;
+    background-color: $bg-color;
+    color: $text-color;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    &:hover {
+        background-color: darken($bg-color, 15%);
+    };
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 6px $bg-color;
+    };
 }
+
+@mixin btn-outline($main-color) {
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid $main-color;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 2px;
+    background-color: rgba($color: $main-color, $alpha: 0);
+    color: $main-color;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover {
+        background-color: rgba($color: $main-color, $alpha: 1.0);
+        color: #fff;
+    };
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 6px $main-color;
+    };
+}
+
 
 .btn-primary {
-    @extend %btn;
-    background-color: $color-primary;
-    border-color: $color-primary;
-    color: $color-primary;
-}
-
-.btn-success {
-    @extend %btn;
-    background-color: $color-success;
-}
-
-.btn-warning {
-    @extend %btn;
-    background-color: $color-warning;
-}
-
-.btn-info {
-    @extend %btn;
-    background-color: $color-info;
-}
-
-.btn-danger {
-    @include important-text;
-    background-color: $color-danger;
+    @include btn($color-primary, #fff)
 }
 
 .btn-outline-primary {
-    @extend %btn;
-    border-color: $color-danger;
-    color: $color-primary;
+    @include btn-outline($color-primary)
+}
+
+.btn-success {
+    @include btn($color-success, #fff)
+}
+
+.btn-outline-success {
+    @include btn-outline($color-success)
+}
+
+.btn-warning {
+    @include btn($color-warning, #fff)
+}
+
+.btn-outline-warning {
+    @include btn-outline($color-warning)
+}
+
+.btn-danger {
+    @include btn($color-danger, #fff)
+}
+
+.btn-outline-danger {
+    @include btn-outline($color-danger)
 }
