@@ -40,11 +40,15 @@
 
 
 .btn-primary {
-    @include btn($color-primary)
+    @include btn($color-primary);
 }
 
 .btn-outline-primary {
-    @include btn-outline($color-primary)
+    @include btn-outline($color-primary);
+}
+
+.btn-secondary {
+    @include btn($color-secondary);
 }
 
 .btn-success {
@@ -64,7 +68,7 @@
 }
 
 .btn-danger {
-    @include btn($color-danger)
+    @include btn($color-danger);
 }
 
 .btn-outline-danger {

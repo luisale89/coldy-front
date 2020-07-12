@@ -7,15 +7,15 @@ export const Dashboard_index = () => {
     const {store, actions} = useContext(Context);
 
     return (
-        <div className="dashb-container-fluid">
-            <div class="row">
-                <div class="col-md-3">...</div>
-                <div class="col-md-9">...</div>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-3">...</div>
+                <div className="col-md-9">...</div>
             </div>
             <div className="row">
-                <div class="col-lg-12">...</div>
+                <div className="col-lg-12">...</div>
             </div>
-            <button className="btn btn-primary">button1</button>
+            <button type="button" className="btn btn-primary">button1</button>
             <button className="btn btn-success">button1</button>
             <button className="btn btn-danger">button1</button>
             <button className="btn btn-warning">button1</button>

@@ -1,7 +1,6 @@
 %container {
     max-width: 100%;
-    display: flex;
-    padding: 0px 10px;
+    padding: 0px 50px;
 }
 
 //up to 576px
@@ -11,8 +10,5 @@
 
 .container-fluid {
     @extend %container;
-}
-
-.nav-container {
-    @extend %container;
+    padding: 0px 10px;
 }

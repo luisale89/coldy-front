@@ -1,13 +1,45 @@
-.coldy-logo {
-    display: inline-flex;
-    color: white;
-    font-size: 20px;
-}
-
-.main-search {
-    display: inline-flex;
-}
-
-.user-box {
-    display: inline-flex;
+.container-fluid.navbar {
+    background-color: $color-primary;
+    height: 65px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    .coldy-logo {
+        color: white;
+        font-size: 20px;
+        padding: 6px 12px;
+        text-decoration: none;
+        width: 200px;
+        flex-grow: 2;
+        text-align: center;
+    }
+    .main-search {
+        align-self: center;
+        flex-grow: 6;
+        display: flex;
+        input {
+            width: 100%;
+            padding: 6px 10px;
+            margin: 0 5px;
+            font-size: 14px;
+            border: 3px solid $color-secondary;
+            border-radius: 4px;
+            background-color: $color-secondary;
+            color: #fff;
+        }
+        &::placeholder {
+            color: $color-bg;
+            font-size: 14px;
+        }
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 5px 2px $color-secondary;
+        };
+    }
+    .user-box {
+        flex-grow: 1;
+        padding: 6px 12px;
+        width: 200px;
+    }
 }
