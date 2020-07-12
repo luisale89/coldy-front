@@ -7,7 +7,7 @@ export const Dashboard_index = () => {
     const {store, actions} = useContext(Context);
 
     return (
-        <div className="container">
+        <div className="col-md-9">
             <div className="row">
                 <div className="col-md-3">...</div>
                 <div className="col-md-9">...</div>
