@@ -7,35 +7,52 @@ export const SideNav = () => {
     const {store, actions} = useContext(Context);
 
     // selint-disable-next-line
-    const [state, setStat] = useState({
-        conteo: 0
+    const [state, setState] = useState({
+        side_menu: false
     });
 
     const nav_links = [
-        {name:"Dashboard", to: "/"},
+        {name:"Dashboard", to: "/dashboard"},
         {name:"Equipos", to: "/equipos"},
         {name:"Reportes", to: "/reportes"},
         {name:"gastos", to: "/gastos"},
         {name:"planificación", to:"/planificación"}
     ];
 
+    const hide_sidem = () => {
+        const new_state = Object.assign(state, {side_menu: false});
+        setState({
+            side_menu: new_state,
+            ...state
+        })
+    };
+
+    const show_sidem = () => {
+        const new_state = Object.assign(state, {side_menu: true});
+        setState({
+            side_menu: new_state,
+            ...state
+        })
+    };
+
     return (
-        <div id="sideNav" className="col-md-2 container-fluid">
-            <div className="btn-group">
-                {store.user.roles.map(item => {
+        <div className="col-md-2 container-fluid">
+            <span id="open-sidem" onClick={show_sidem}>&#9776; Menú</span>
+            <div id="sideNav" className={state.side_menu ? "sideNav active":"sideNav"}>
+                <span className="closebtn" onClick={hide_sidem}>&times;</span>
+                <div id="role-select" className="btn-group">
+                    {store.user.roles.map(item => {
+                        return (
+                            <button key={item.name} className={item.active ? "active":""}>{item.name}</button>
+                        )
+                    })}
+                </div>
+                {nav_links.map(item => {
                     return (
-                        <button className={item.active ? "active":""}>{item.name}</button>
+                        <NavLink key={item.name} to={item.to} onClick={hide_sidem} activeClassName="active-nav">{item.name}</NavLink>
                     )
                 })}
             </div>
-            <span style={{fontSize:"30px", cursor:"pointer"}}>&#9776; open</span>
-            <ul className="snav-menu">
-                {nav_links.map(item => {
-                    return (
-                        <li className="snav-item"><NavLink to={item.to}>{item.name}</NavLink></li>
-                    )
-                })}
-            </ul>
         </div>
     )
 }

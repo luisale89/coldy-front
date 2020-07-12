@@ -1,11 +1,68 @@
 #sideNav {
     height: 100%;
-    .snav-menu {
-        .snav-item {
-            
-            a {
-                text-decoration: none;
-            }
+    position: fixed;
+    width: 0%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: $color-bg;
+    overflow-x: hidden;
+    transition: 0.4s;
+    &.active {
+        width: 60%;
+    }
+    a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        &:hover {
+            color: $color-primary;
         }
+        &.active-nav {
+            border-left: 10px solid $color-primary;
+            color: $color-primary;
+            font-weight: bold;
+            background-color: $color-bg;
+        }
+    }
+    .closebtn {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        cursor: pointer;
+    }
+    #role-select {
+        padding-top: 60px;
+    }
+    @media only screen and (min-width: 922px) {
+        height: 800px;
+        width: 100%;
+        position: static;
+        z-index: 0;
+        overflow-x: visible;
+        background: #fff;
+        a {
+            font-size: 14px;
+        }
+        .closebtn {
+            display: none;
+        }
+        #role-select {
+            padding: 20px 10px;
+        }
+    }
+}
+
+#open-sidem {
+    font-size: 20px;
+    cursor: pointer;
+    @media only screen and (min-width: 922px) {
+        display: none;
     }
 }
