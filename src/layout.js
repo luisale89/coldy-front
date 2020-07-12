@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import history from './views/history';
 
 import { Dashboard_index } from "./views/dashboard-index";
+import { NotFound } from "./views/notFound";
 
 import { Navbar } from "./component/navbar";
 import { SideNav } from "./component/sideNav";
@@ -18,20 +19,18 @@ export const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div className="d-flex flex-column h-100">
-			<Router history={history}>
-				<ScrollToTop>
-					<Navbar />
-                    <div className="row main-container">
-                        <SideNav /> {/*aquí se renderiza el side-nav con un 25% de ocup*/}
-                        <Switch> {/*El resto de los componentes ocupará un 75% del espacio, excepto los dispositivos móviles */}
-                            <Route exact path="/" component={Dashboard_index} />
-                            <Route render={() => <h1>Not found!</h1>} />
-                        </Switch>
-                    </div>
-				</ScrollToTop>
-			</Router>
-		</div>
+        <Router history={history}>
+            <ScrollToTop>
+                <Navbar />
+                <div className="row main-container">
+                    <SideNav /> {/*aquí se renderiza el side-nav con un 25% de ocup*/}
+                    <Switch> {/*El resto de los componentes ocupará un 75% del espacio, excepto los dispositivos móviles */}
+                        <Route exact path="/" component={Dashboard_index} />
+                        <Route render={() => <NotFound />} />
+                    </Switch>
+                </div>
+            </ScrollToTop>
+        </Router>
 	);
 };
 

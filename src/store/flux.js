@@ -1,8 +1,16 @@
+//eslint-disable-next-line
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			fname: 'luis',
-			lname: 'lucena'
+            user: {
+                fname:"Luis",
+                lname:"Lucena",
+                company: "Lider Frio",
+                roles:[
+                    {name:"Técnico", active: true},
+                    {name:"Administrador", active: false}
+                ]
+            }
 		},
 		actions: {
 			loadSomeData: () => {
