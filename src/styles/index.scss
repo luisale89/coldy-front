@@ -4,12 +4,17 @@
     box-sizing: border-box;
 }
 
-body {
+#root {
+  height: 100%;
+}
+
+html, body {
     margin: 0;
     font-family: $main-font-stack;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: $color-bg;
+    height: 100%;
   }
   
 code {
