@@ -45,4 +45,18 @@
         padding: 6px 12px;
         width: 200px;
     }
+    #open-sidebar {
+        display: inline-block;
+        background: $color-success;
+        border-radius: 0px 10px 10px 0px;
+        color: #fff;
+        position: fixed;
+        z-index: 1;
+        font-size: 30px;
+        top: 70px;
+        left: 0px;
+        @media only screen and (min-width: 768px) {
+            display: none;
+        }
+    }
 }

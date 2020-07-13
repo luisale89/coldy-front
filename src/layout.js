@@ -7,7 +7,7 @@ import { Dashboard_index } from "./views/dashboard-index";
 import { NotFound } from "./views/notFound";
 
 import { Navbar } from "./component/navbar";
-import { SideNav } from "./component/sideNav";
+import { Sidebar } from "./component/sidebar";
 
 import injectContext from "../src/store/appContext";
 
@@ -23,7 +23,7 @@ export const Layout = () => {
             <ScrollToTop>
                 <Navbar />
                 <div className="main-container">
-                    <SideNav /> {/*aquí se renderiza el side-nav en todas las vistas*/}
+                    <Sidebar /> {/*aquí se renderiza el side-nav en todas las vistas*/}
                     <Switch> 
                         <Route exact path="/" component={Dashboard_index} />
                         <Route render={() => <NotFound />} />

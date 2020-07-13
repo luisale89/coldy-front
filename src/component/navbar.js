@@ -1,8 +1,11 @@
-import React from 'react';
-// import { Context } from '../store/appContext';
+import React, { useContext } from 'react';
+import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
 
 export const Navbar = () => {
+    // eslint-disable-next-line
+    const {store, actions} = useContext(Context);
+
     return (
         <nav id="navbar">
             <NavLink to="/" className="coldy-logo">
@@ -13,6 +16,7 @@ export const Navbar = () => {
                 <input type="text" className="main-search" placeholder="Buscar..."></input>
             </div>
             <div className="user-box">user</div>
+            <span id="open-sidebar" onClick={actions.open_sidebar}>&#9776;</span>
         </nav>
     );
 }

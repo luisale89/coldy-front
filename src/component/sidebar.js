@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
 
-export const SideNav = () => {
+export const Sidebar = () => {
     // eslint-disable-next-line
     const {store, actions} = useContext(Context);
 
-    // selint-disable-next-line
+    // eslint-disable-next-line
     const [state, setState] = useState({
-        side_menu: false
+        side_menu: true
     });
 
     const nav_links = [
@@ -19,26 +19,9 @@ export const SideNav = () => {
         {name:"planificación", to:"/planificación"}
     ];
 
-    const hide_sidem = () => {
-        const new_state = Object.assign(state, {side_menu: false});
-        setState({
-            side_menu: new_state,
-            ...state
-        })
-    };
-
-    const show_sidem = () => {
-        const new_state = Object.assign(state, {side_menu: true});
-        setState({
-            side_menu: new_state,
-            ...state
-        })
-    };
-
     return (
-        <div id="sideNav" className={state.side_menu ? "sideNav active":"sideNav"}>
-            <span id="open-sidem" onClick={show_sidem}>&#9776; Menú</span>
-            <span className="closebtn" onClick={hide_sidem}>&times;</span>
+        <div id="sideNav" className={store.side_bar ? "active":""}>
+            <span className="closebtn" onClick={actions.close_sidebar}>&times;</span>
             <div id="role-select" className="btn-group">
                 {store.user.roles.map(item => {
                     return (
@@ -48,7 +31,7 @@ export const SideNav = () => {
             </div>
             {nav_links.map(item => {
                 return (
-                    <NavLink key={item.name} to={item.to} onClick={hide_sidem} activeClassName="active-nav" exact>{item.name}</NavLink>
+                    <NavLink key={item.name} to={item.to} onClick={actions.close_sidebar} activeClassName="active-nav" exact>{item.name}</NavLink>
                 )
             })}
         </div>
