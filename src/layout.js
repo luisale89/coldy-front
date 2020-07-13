@@ -25,7 +25,7 @@ export const Layout = () => {
                 <div className="row main-container">
                     <SideNav /> {/*aquí se renderiza el side-nav con un 25% de ocup*/}
                     <Switch> {/*El resto de los componentes ocupará un 75% del espacio, excepto los dispositivos móviles */}
-                        <Route exact path="/dashboard" component={Dashboard_index} />
+                        <Route exact path="/" component={Dashboard_index} />
                         <Route render={() => <NotFound />} />
                     </Switch>
                 </div>

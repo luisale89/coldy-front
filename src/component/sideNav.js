@@ -12,7 +12,7 @@ export const SideNav = () => {
     });
 
     const nav_links = [
-        {name:"Dashboard", to: "/dashboard"},
+        {name:"Inicio", to: "/"},
         {name:"Equipos", to: "/equipos"},
         {name:"Reportes", to: "/reportes"},
         {name:"gastos", to: "/gastos"},
@@ -49,7 +49,7 @@ export const SideNav = () => {
                 </div>
                 {nav_links.map(item => {
                     return (
-                        <NavLink key={item.name} to={item.to} onClick={hide_sidem} activeClassName="active-nav">{item.name}</NavLink>
+                        <NavLink key={item.name} to={item.to} onClick={hide_sidem} activeClassName="active-nav" exact>{item.name}</NavLink>
                     )
                 })}
             </div>
