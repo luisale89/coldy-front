@@ -7,7 +7,7 @@
     left: 0;
     background-color: $color-bg;
     overflow-x: hidden;
-    transition: 0.4s;
+    transition: width 0.4s;
     &.active {
         width: 80%;
     }
@@ -17,12 +17,10 @@
         font-size: 25px;
         color: #818181;
         display: block;
-        transition: 0.3s;
         &:hover {
             color: $color-primary;
         }
         &.active-nav {
-            border-left: 10px solid $color-primary;
             color: $color-primary;
             font-weight: bold;
             background-color: $color-bg;
@@ -49,6 +47,12 @@
         background: #fff;
         a {
             font-size: 14px;
+            &:hover {
+                background-color: darken($color: $color-bg, $amount: 15%);
+            }
+            &:focus{
+                outline: none;
+            }
         }
         .closebtn {
             display: none;
