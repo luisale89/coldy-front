@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 export const Navbar = () => {
     return (
-        <nav id="navbar" className="container-fluid">
+        <nav id="navbar">
             <NavLink to="/" className="coldy-logo">
                 <div>coldy App</div>
             </NavLink>

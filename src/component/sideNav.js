@@ -36,23 +36,21 @@ export const SideNav = () => {
     };
 
     return (
-        <div className="col-md-2 container-fluid">
+        <div id="sideNav" className={state.side_menu ? "sideNav active":"sideNav"}>
             <span id="open-sidem" onClick={show_sidem}>&#9776; Menú</span>
-            <div id="sideNav" className={state.side_menu ? "sideNav active":"sideNav"}>
-                <span className="closebtn" onClick={hide_sidem}>&times;</span>
-                <div id="role-select" className="btn-group">
-                    {store.user.roles.map(item => {
-                        return (
-                            <button key={item.name} className={item.active ? "active":""}>{item.name}</button>
-                        )
-                    })}
-                </div>
-                {nav_links.map(item => {
+            <span className="closebtn" onClick={hide_sidem}>&times;</span>
+            <div id="role-select" className="btn-group">
+                {store.user.roles.map(item => {
                     return (
-                        <NavLink key={item.name} to={item.to} onClick={hide_sidem} activeClassName="active-nav" exact>{item.name}</NavLink>
+                        <button key={item.name} className={item.active ? "active":""}>{item.name}</button>
                     )
                 })}
             </div>
+            {nav_links.map(item => {
+                return (
+                    <NavLink key={item.name} to={item.to} onClick={hide_sidem} activeClassName="active-nav" exact>{item.name}</NavLink>
+                )
+            })}
         </div>
     )
 }

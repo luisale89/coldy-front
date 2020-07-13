@@ -38,10 +38,13 @@
     #role-select {
         padding-top: 60px;
     }
-    @media only screen and (min-width: 922px) {
-        width: 100%;
-        position: static;
+    #open-sidem {
+    font-size: 20px;
+    }
+    @media only screen and (min-width: 768px) {
+        flex: 0 0 250px;
         z-index: 0;
+        position: static;
         overflow-x: visible;
         background: #fff;
         a {
@@ -59,13 +62,5 @@
         #role-select {
             padding: 20px 10px;
         }
-    }
-}
-
-#open-sidem {
-    font-size: 20px;
-    cursor: pointer;
-    @media only screen and (min-width: 922px) {
-        display: none;
     }
 }

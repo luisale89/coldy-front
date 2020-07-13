@@ -22,9 +22,9 @@ export const Layout = () => {
         <Router history={history}>
             <ScrollToTop>
                 <Navbar />
-                <div className="row main-container">
-                    <SideNav /> {/*aquí se renderiza el side-nav con un 25% de ocup*/}
-                    <Switch> {/*El resto de los componentes ocupará un 75% del espacio, excepto los dispositivos móviles */}
+                <div className="main-container">
+                    <SideNav /> {/*aquí se renderiza el side-nav en todas las vistas*/}
+                    <Switch> 
                         <Route exact path="/" component={Dashboard_index} />
                         <Route render={() => <NotFound />} />
                     </Switch>
