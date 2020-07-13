@@ -5,21 +5,18 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: $color-bg;
+    background-color: lighten($color: $color-bg, $amount: 10%);
     overflow-x: hidden;
     transition: width 0.4s;
     &.active {
-        width: 80%;
+        width: 60%;
     }
     a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
-        font-size: 25px;
-        color: #818181;
+        font-size: 16px;
+        color: $color-primary;
         display: block;
-        &:hover {
-            color: $color-primary;
-        }
         &.active-nav {
             color: $color-primary;
             font-weight: bold;
@@ -37,6 +34,7 @@
     }
     #role-select {
         padding-top: 60px;
+        padding-bottom: 30px;
     }
     @media only screen and (min-width: 768px) {
         flex: 0 0 250px;
