@@ -2,13 +2,14 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+            global_role: "admin",
             user: {
                 fname:"Luis",
                 lname:"Lucena",
                 company: "Lider Frio",
                 roles:[
-                    {name:"Técnico", active: true},
-                    {name:"Administrador", active: false}
+                    {id:"admin", name:"Administrador", active: true},
+                    {id:"mantenedor", name:"Técnico", active: false}
                 ]
             },
             side_bar: false // tag para mostrar/ocultar sidebar desde el navbar.
@@ -25,6 +26,27 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             open_sidebar: () => {
                 setStore({side_bar: true});
+            },
+            set_role: (role) => {
+                const store = getStore();
+                let pass = false;
+                if (typeof(role) === undefined) {
+                    setStore({global_role: store.roles[0].id})
+                } else {
+                    const new_roles = store.roles.map(item => {
+                        if (item.id === role) {
+                            pass = true;
+                            return {...item, active: true}
+                        } else {
+                            return {...item, actve: false}
+                        }
+                    });
+                    if (pass) {
+                        setStore({global_role: role, roles: new_roles});
+                    } else {
+                        console.log("bad role request!...");
+                    }
+                }
             }
 		}
 	};

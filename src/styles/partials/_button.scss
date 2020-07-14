@@ -89,9 +89,9 @@
     padding: 0px;
     width: 100%;
     button {
-        background-color: darken($color: $color-bg, $amount: 10%);
-        border: 1px solid $color-bg;
-        color: $color-primary;
+        background-color: #fff;
+        border: 1px solid darken($color: $color-bg, $amount: 15%);
+        color: darken($color: $color-bg, $amount: 60%);
         font-size: 12px;
         padding: 6px 12px;
         width: 100%;
@@ -107,7 +107,9 @@
             outline: none;
         }
         &.active {
-            background-color: darken($color: $color-bg, $amount: 20%)
+            background-color: $color-bg;
+            color: $color-primary;
+            font-weight: bold;
         }
     }
     &::after{

@@ -11,12 +11,21 @@ export const Sidebar = () => {
         side_menu: true
     });
 
-    const nav_links = [
-        {name:"Inicio", to: "/"},
-        {name:"Equipos", to: "/equipos"},
-        {name:"Reportes", to: "/reportes"},
-        {name:"gastos", to: "/gastos"},
-        {name:"planificación", to:"/planificación"}
+    const admin_links = [
+        {name:"Inicio", to: "/", logo: 'fas fa-home'},
+        {name:"Usuarios", to: "/usuarios", logo: 'fas fa-users'},
+        {name:"Clientes", to: "/clientes", logo: 'fas fa-house-user'},
+        {name:"Reportes", to: "/reportes", logo: 'far fa-chart-bar'},
+        {name:"Alarmas", to:"/alarmas", logo: 'fas fa-exclamation-triangle'},
+        {name:"Planificación", to:"/planificacion", logo:'far fa-calendar-alt'}
+    ];
+    //eslint-disable-next-line
+    const mante_links = [
+        {name:"Inicio", to:"/mantenedor", logo:""},
+        {name:"Mantenimiento", to:"/mantenedor/mtto", logo:""},
+        {name:"Mis Reportes", to:"/mantenedor/reportes", logo:""},
+        {name:"Alarmas", to:"/mantenedor/alarmas", logo:""},
+        {name:"Tareas", to:"/mantenedor/tareas", logo:""},
     ];
 
     return (
@@ -25,13 +34,16 @@ export const Sidebar = () => {
             <div id="role-select" className="btn-group">
                 {store.user.roles.map(item => {
                     return (
-                        <button key={item.name} className={item.active ? "active":""}>{item.name}</button>
+                        <button key={item.id} className={item.active ? "active":""}>{item.name}</button>
                     )
                 })}
             </div>
-            {nav_links.map(item => {
+            {admin_links.map(item => {
                 return (
-                    <NavLink key={item.name} to={item.to} onClick={actions.close_sidebar} activeClassName="active-nav" exact>{item.name}</NavLink>
+                    <NavLink key={item.name} to={item.to} onClick={actions.close_sidebar} activeClassName="active-nav" exact>
+                        <i className={item.logo}></i>
+                        <span>{item.name}</span>
+                    </NavLink>
                 )
             })}
         </div>
