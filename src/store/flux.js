@@ -1,4 +1,3 @@
-//eslint-disable-next-line
 import history from "../views/history";
 
 //eslint-disable-next-line
@@ -7,8 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
             app_roles: [
                 {id: 0, name: "administrador"},
-                {id: 1, name: "mantenedor"},
-                {id: 2, name: "cliente"}
+                {id: 1, name: "mantenedor"}
             ],
             current_role: 0,
             user: {
@@ -40,11 +38,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 role = typeof(role) !== 'undefined' ? role : store.user.roles[0].role;
 
-                store.user.roles.forEach(item => {
+                store.user.roles.forEach(item => { //what happens if user.role is empty?
                     if (item.role === role) {
                         setStore({current_role: role});
                     }
                 });
+                sessionStorage.setItem("a_token", "luis");
+                history.push(`/${store.app_roles[role].name}`); //set_role se debe ejecutar después del login efectivo del usuario.
             }
 		}
 	};

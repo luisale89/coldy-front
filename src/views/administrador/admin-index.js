@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 
-export const Dashboard_index = () => {
+export const AdminIndex = () => {
 
     //eslint-disable-next-line
     const {store, actions} = useContext(Context);

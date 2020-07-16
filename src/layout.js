@@ -1,11 +1,21 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import history from './views/history';
 
-import { Dashboard_index } from "./views/dashboard-index";
+// * admin Views
+import { AdminIndex } from "./views/administrador/admin-index";
+
+// * Mante Views
+
+// * Auth_Views
+import { Login } from "./views/auth/login";
+import { SignUp } from "./views/auth/signup";
+
+// ! not-found View
 import { NotFound } from "./views/notFound";
 
+// ? components
 import { Navbar } from "./component/navbar";
 import { Sidebar } from "./component/sidebar";
 
@@ -18,20 +28,35 @@ export const Layout = () => {
 	//eslint-disable-next-line
 	const basename = process.env.BASENAME || "";
 
-	return (
-        <Router history={history}>
-            <ScrollToTop>
-                <Navbar />
+    if (window.sessionStorage.getItem("a_token") !== null || window.localStorage.getItem("a_token") !== null) {
+        return ( //protected Views
+            <Router history={history}>
+                <ScrollToTop>
+                    <Navbar />
+                    <div className="main-container">
+                        <Sidebar /> {/*aquí se renderiza el side-nav en todas las vistas*/}
+                        <Switch> 
+                            <Route exact path="/administrador" component={AdminIndex} />
+                            <Route render={() => <NotFound />} />
+                        </Switch>
+                    </div>
+                </ScrollToTop>
+            </Router>
+        );
+    } else {
+        return ( //unprotected views
+            <Router history={history}>
                 <div className="main-container">
-                    <Sidebar /> {/*aquí se renderiza el side-nav en todas las vistas*/}
-                    <Switch> 
-                        <Route exact path="/" component={Dashboard_index} />
-                        <Route render={() => <NotFound />} />
+                    <Switch>
+                        <Route path="/login" component ={Login} />
+                        <Route path="/sign-in" component={SignUp} />
+                        <Redirect from="/*" to ="/login" />
                     </Switch>
                 </div>
-            </ScrollToTop>
-        </Router>
-	);
+            </Router>
+        )
+    }
+    
 };
 
 export default injectContext(Layout);
