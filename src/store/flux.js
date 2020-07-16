@@ -1,18 +1,24 @@
+//eslint-disable-next-line
 import history from "../views/history";
 
 //eslint-disable-next-line
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_role: "",
+            app_roles: [
+                {id: 0, name: "administrador"},
+                {id: 1, name: "mantenedor"},
+                {id: 2, name: "cliente"}
+            ],
+            current_role: 0,
             user: {
                 id: 0,
                 fname:"Luis",
                 lname:"Lucena",
                 company: "Lider Frio",
                 roles:[
-                    {id:"administrador", name:"Administrador", active: true},
-                    {id:"mantenedor", name:"Técnico", active: false}
+                    {role: 0, name:"Administrador"},
+                    {role: 1, name:"Técnico"}
                 ]
             },
             side_bar: false // tag para mostrar/ocultar sidebar desde el navbar.
@@ -30,24 +36,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             open_sidebar: () => {
                 setStore({side_bar: true});
             },
-            set_role: (role) => {
+            set_role: (role) => { // establece el rol global de la app para las configuraciones.
                 const store = getStore();
-                role = typeof(role) !== 'undefined' ? role : store.user.roles[0].id;
-                let pass = false;
+                role = typeof(role) !== 'undefined' ? role : store.user.roles[0].role;
 
-                const new_roles = store.user.roles.map(item => {
-                    if (item.id === role) {
-                        pass = true;
-                        return {...item, active: true}
-                    } else {
-                        return {...item, active: false}
+                store.user.roles.forEach(item => {
+                    if (item.role === role) {
+                        setStore({current_role: role});
                     }
                 });
-                if (pass) {
-                    setStore({global_role: role, roles: new_roles});
-                } else {
-                    console.log("bad role request!...");
-                }
             }
 		}
 	};
