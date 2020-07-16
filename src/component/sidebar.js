@@ -1,15 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
 
 export const Sidebar = () => {
     // eslint-disable-next-line
     const {store, actions} = useContext(Context);
-
-    // eslint-disable-next-line
-    const [state, setState] = useState({
-        side_menu: true
-    });
 
     const admin_links = [
         {name:"Inicio", to: "/", logo: 'fas fa-home'},
@@ -34,18 +29,20 @@ export const Sidebar = () => {
             <div id="role-select" className="btn-group">
                 {store.user.roles.map(item => {
                     return (
-                        <button key={item.id} className={item.active ? "active":""}>{item.name}</button>
+                        <NavLink to={`/${item.id}`} key={item.id} className="select-item"activeClassName="active">{item.name}</NavLink>
                     )
                 })}
             </div>
-            {admin_links.map(item => {
-                return (
-                    <NavLink key={item.name} to={item.to} onClick={actions.close_sidebar} activeClassName="active-nav" exact>
-                        <i className={item.logo}></i>
-                        <span>{item.name}</span>
-                    </NavLink>
-                )
-            })}
+            <div className="nav-zone">
+                {admin_links.map(item => {
+                    return (
+                        <NavLink key={item.name} to={item.to} onClick={actions.close_sidebar} activeClassName="active-nav" exact>
+                            <i className={item.logo}></i>
+                            <span>{item.name}</span>
+                        </NavLink>
+                    )
+                })}
+            </div>
         </div>
     )
 }

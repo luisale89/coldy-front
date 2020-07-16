@@ -11,22 +11,24 @@
     &.active {
         width: 60%;
     }
-    a {
-        padding: 16px 8px;
-        text-decoration: none;
-        font-size: 16px;
-        color: darken($color: $color-bg, $amount: 60%);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        &.active-nav {
-            color: $color-primary;
-            font-weight: bold;
-            background-color: $color-bg;
-        }
-        i {
-            flex: 0 0 50px;
-            text-align: center;
+    .nav-zone {
+        a {
+            padding: 16px 8px;
+            text-decoration: none;
+            font-size: 16px;
+            color: darken($color: $color-bg, $amount: 60%);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            &.active-nav {
+                color: $color-primary;
+                font-weight: bold;
+                background-color: $color-bg;
+            }
+            i {
+                flex: 0 0 50px;
+                text-align: center;
+            }
         }
     }
     .closebtn {
@@ -39,8 +41,8 @@
         cursor: pointer;
     }
     #role-select {
-        padding-top: 60px;
-        padding-bottom: 30px;
+        padding: 20px 10px;
+        margin-top: 60px;
     }
     @media only screen and (min-width: 768px) {
         flex: 0 0 250px;
@@ -48,6 +50,7 @@
         position: static;
         overflow-x: visible;
         background: #fff;
+        margin-top: 0px;
         a {
             font-size: 14px;
             &:hover {
@@ -61,7 +64,7 @@
             display: none;
         }
         #role-select {
-            padding: 20px 10px;
+            margin-top: 10px;
         }
     }
 }

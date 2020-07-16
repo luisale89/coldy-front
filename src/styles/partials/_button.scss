@@ -38,7 +38,6 @@
     };
 }
 
-
 .btn-primary {
     @include btn($color-primary);
 }
@@ -88,15 +87,16 @@
     justify-content: center;
     padding: 0px;
     width: 100%;
-    button {
+    a {
         background-color: #fff;
         border: 1px solid darken($color: $color-bg, $amount: 15%);
         color: darken($color: $color-bg, $amount: 60%);
-        font-size: 12px;
+        font-size: 16px;
         padding: 6px 12px;
         width: 100%;
+        text-decoration: none;
+        text-align: center;
         cursor: pointer;
-        float: left;
         &:not(:last-child) {
             border-right: none;
         }

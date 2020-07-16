@@ -1,15 +1,17 @@
+import history from "../views/history";
+
 //eslint-disable-next-line
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            global_role: "admin",
+            global_role: "",
             user: {
                 id: 0,
                 fname:"Luis",
                 lname:"Lucena",
                 company: "Lider Frio",
                 roles:[
-                    {id:"admin", name:"Administrador", active: true},
+                    {id:"administrador", name:"Administrador", active: true},
                     {id:"mantenedor", name:"Técnico", active: false}
                 ]
             },
@@ -30,14 +32,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             set_role: (role) => {
                 const store = getStore();
-                role = typeof(role) !== 'undefined' ? role : store.roles[0].id;
+                role = typeof(role) !== 'undefined' ? role : store.user.roles[0].id;
+                let pass = false;
 
-                const new_roles = store.roles.map(item => {
+                const new_roles = store.user.roles.map(item => {
                     if (item.id === role) {
                         pass = true;
                         return {...item, active: true}
                     } else {
-                        return {...item, actve: false}
+                        return {...item, active: false}
                     }
                 });
                 if (pass) {
