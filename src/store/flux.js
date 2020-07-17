@@ -43,9 +43,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                         setStore({current_role: role});
                     }
                 });
-                // localStorage.setItem("a_token", "luis");
+                localStorage.setItem("a_token", "luis");
                 // document.cookie = "name = luis, path = /, domain = localhost";//create a cookie that all app will see.
-                // history.push(`/${store.app_roles[role].name}`); //set_role se debe ejecutar después del login efectivo del usuario.
+                history.push(`/${store.app_roles[role].name}`); //set_role se debe ejecutar después del login efectivo del usuario.
             }
 		}
 	};
