@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import history from './views/history';
+import { Context } from './store/appContext';
 
 //index_view
 import { Home } from './views/home';
@@ -14,7 +15,7 @@ import { Clientes as A_clientes} from "./views/administrador/clientes";
 import { ManteIndex as M_index } from "./views/mantenedor/mante-index";
 
 // * Auth_Views
-import { Login } from "./views/auth/login";
+// import { Login } from "./views/auth/login";
 import { SignUp } from "./views/auth/signup";
 
 // ! not-found View
@@ -32,14 +33,15 @@ export const Layout = () => {
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	//eslint-disable-next-line
     // const basename = process.env.BASENAME || "";
-    
-    const logged = window.sessionStorage.getItem("a_token");
+
+    //eslint-disable-next-line
+    const {store, actions} = useContext(Context); //global store
 
     const routes = {
         admin: "/administrador", mante: "/mantenedor"
     };
 
-    if (logged) {
+    if (store.user_logged) {
         return ( //the whole app is protected.
             <Router history={history}>
                 <ScrollToTop>
@@ -65,9 +67,9 @@ export const Layout = () => {
             <Router history={history}>
                 <div className="main-container">
                     <Switch>
-                        <Route path="/ingreso" component ={Login} />
+                        {/* <Route path="/ingreso" component ={Login} /> */}
                         <Route path="/registro" component = {SignUp} /> 
-                        <Redirect from="/*" to="/ingreso" />
+                        <Redirect from="/*" to="/registro" />
                     </Switch>
                 </div>
             </Router>

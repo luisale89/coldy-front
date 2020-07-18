@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 {id: 1, name: "mantenedor"}
             ],
             current_role: 0,
+            user_logged: true,
             user: {
                 id: 0,
                 fname:"Luis",
@@ -17,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 roles:[
                     {role: 0, name:"Administrador"},
                     {role: 1, name:"Técnico"}
-                ]
+                ],
             },
             side_bar: false // tag para mostrar/ocultar sidebar desde el navbar.
 		},
@@ -43,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         setStore({current_role: role});
                     }
                 });
-                sessionStorage.setItem("a_token", "luis");
+                // sessionStorage.setItem("a_token", "luis");
                 // document.cookie = "name = luis, path = /, domain = localhost";//create a cookie that all app will see.
                 // history.push(`/${store.app_roles[role].name}`); //set_role se debe ejecutar después del login efectivo del usuario.
             }

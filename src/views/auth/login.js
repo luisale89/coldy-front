@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import { Context } from '../../store/appContext';
 import { validations } from '../../helper/validations';
-import { useState } from 'react';
 
 export const Login = () => {
 
