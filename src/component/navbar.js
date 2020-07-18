@@ -8,7 +8,7 @@ export const Navbar = () => {
 
     return (
         <nav id="navbar">
-            <NavLink to={`/${store.app_roles[store.current_role].name}`} className="coldy-logo">
+            <NavLink to={`/${store.app_roles[store.current_role].name}`} className="app-logo">
                 <div>coldy App</div>
             </NavLink>
             <div className="main-search">

@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 {id: 1, name: "mantenedor"}
             ],
             current_role: 0,
-            user_logged: true,
+            user_logged: false,
             user: {
                 id: 0,
                 fname:"Luis",

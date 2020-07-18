@@ -15,7 +15,7 @@ import { Clientes as A_clientes} from "./views/administrador/clientes";
 import { ManteIndex as M_index } from "./views/mantenedor/mante-index";
 
 // * Auth_Views
-// import { Login } from "./views/auth/login";
+import { Login } from "./views/auth/login";
 import { SignUp } from "./views/auth/signup";
 
 // ! not-found View
@@ -65,13 +65,11 @@ export const Layout = () => {
     } else {
         return ( //Public Views
             <Router history={history}>
-                <div className="main-container">
-                    <Switch>
-                        {/* <Route path="/ingreso" component ={Login} /> */}
-                        <Route path="/registro" component = {SignUp} /> 
-                        <Redirect from="/*" to="/registro" />
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route path="/ingreso" component ={Login} />
+                    <Route path="/registro" component = {SignUp} /> 
+                    <Redirect from="/*" to="/ingreso" />
+                </Switch>
             </Router>
         )
     }

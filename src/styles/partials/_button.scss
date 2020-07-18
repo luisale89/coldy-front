@@ -27,9 +27,9 @@
 @mixin btn($main-color) {
     background-color: $main-color;
     color: #fff;
-    border: 1px solid $main-color;
+    border: none;
     &:hover {
-        background-color: darken($color: $main-color, $amount: 15%);
+        background-color: darken($color: $main-color, $amount: 5%);
         color: #fff;
     };
     &:focus {
