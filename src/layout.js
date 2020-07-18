@@ -1,7 +1,10 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import history from './views/history';
+
+//index_view
+import { Home } from './views/home';
 
 // * admin Views
 import { AdminIndex as A_index} from "./views/administrador/admin-index";
@@ -12,6 +15,7 @@ import { ManteIndex as M_index } from "./views/mantenedor/mante-index";
 
 // * Auth_Views
 import { Login } from "./views/auth/login";
+import { SignUp } from "./views/auth/signup";
 
 // ! not-found View
 import { NotFound } from "./views/notFound";
@@ -27,9 +31,9 @@ export const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	//eslint-disable-next-line
-    const basename = process.env.BASENAME || "";
+    // const basename = process.env.BASENAME || "";
     
-    const logged = window.localStorage.getItem("a_token");
+    const logged = window.sessionStorage.getItem("a_token");
 
     const routes = {
         admin: "/administrador", mante: "/mantenedor"
@@ -44,8 +48,9 @@ export const Layout = () => {
                         <Sidebar /> {/*aquí se renderiza el side-nav en todas las vistas*/}
                         <Switch> 
                             {/* admin routes */}
+                            <Route exact path="/" component={Home} />
                             <Route exact path={`${routes.admin}`} component={A_index} />
-                            <Route path={`${routes.admin}/clientes`} component={A_clientes}/>
+                            <Route path={`${routes.admin}/clientes`} component={A_clientes} />
                             {/* mant. routes */}
                             <Route exact path={`${routes.mante}`} component={M_index} />
                             {/* not found */}
@@ -56,11 +61,13 @@ export const Layout = () => {
             </Router>
         );
     } else {
-        return ( //
+        return ( //Public Views
             <Router history={history}>
                 <div className="main-container">
                     <Switch>
-                        <Route path="/" component ={Login} /> {/*all url return this page that will redirect the user to: www.auth.friotermia.com after 3 seconds of "validating the sesion"*/}
+                        <Route path="/ingreso" component ={Login} />
+                        <Route path="/registro" component = {SignUp} /> 
+                        <Redirect from="/*" to="/ingreso" />
                     </Switch>
                 </div>
             </Router>
