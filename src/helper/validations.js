@@ -1,6 +1,7 @@
 export const validations  = {
     email: (email) => { // cuando el tipo del campo a ser validado es email.
         const reEmail = /\S+@\S+\.\S+/; //expresion regular para verificar email.
+        email = typeof(email) !== 'undefined' ? email : "invalid";
         if (reEmail.test(email)) {
             return {valid: true, msg: "ok", class: "valid"}
         } else {
@@ -9,6 +10,7 @@ export const validations  = {
     },
     password: (passw) => { // cuando el tipo del campo a ser validado es password.
         const rePassw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/; //expresion regular para verificar contraseña
+        passw = typeof(passw) !== 'undefined' ? passw : "invalid";
         if (rePassw.test(passw)) {
             return {valid: true, msg: "ok", class: "valid"}
         } else {
@@ -23,6 +25,8 @@ export const validations  = {
         }
     },
     re_passw: (pass, repass) => {
+        pass = typeof(pass) !== 'undefined' ? pass : "";
+        repass = typeof(pass) !== 'undefined' ? repass : "";
         if (pass === "") {
             return {valid: false, msg: "Campo requerido", class: "invalid"}
         } else if (pass !== repass){

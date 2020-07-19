@@ -15,12 +15,12 @@ export const Login = () => {
 
     const [state, setState] = useState({ //local Store
         fields: {
-            login_email: "", // id del campo email del formulario
-            login_passw: "", // id del campo password del formulario
+            login_email: "", // id del campo email del formulario, contiene el input del usuario.
+            login_passw: "", // id del campo password del formulario, contiene el input del usuario.
         },
         rq_fields_fb: { // key de cada objeto debe ser igual al id en constante "required_fields"
-            login_email: {class: fb_styles.neutral, msg: ""},
-            login_passw: {class: fb_styles.neutral, msg: ""}
+            login_email: {class: fb_styles.neutral, msg: ""}, // contiene el feedback al usuario.
+            login_passw: {class: fb_styles.neutral, msg: ""} // contiene el feedback al usuario
         },  
         password_type: "password" // flag para mostrar/ocultar contraseña.
     });
@@ -130,7 +130,7 @@ export const Login = () => {
                     {/* email field */}
                     <div className="form-group">
                         <label htmlFor="login_email">CORREO ELECTRÓNICO</label>
-                        <span className={state.rq_fields_fb.login_email.class}>{state.rq_fields_fb.login_email.msg}</span>
+                        <span className={state.rq_fields_fb.login_email.class}><i className="fas fa-exclamation-triangle"></i> {state.rq_fields_fb.login_email.msg}</span>
                         <input 
                             type="email" 
                             placeholder="Ingesa tu email" 
@@ -145,9 +145,9 @@ export const Login = () => {
                     {/* pasword field */}
                     <div className="form-group">
                         <label htmlFor="login_passw">CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.login_passw.class}>{state.rq_fields_fb.login_passw.msg}</span>
+                        <span className={state.rq_fields_fb.login_passw.class}><i className="fas fa-exclamation-triangle"></i> {state.rq_fields_fb.login_passw.msg}</span>
                         <input 
-                            type="password" 
+                            type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
                             placeholder="Ingresa tu contraseña" 
                             id="login_passw"
                             value={state.fields.login_passw || ""}
