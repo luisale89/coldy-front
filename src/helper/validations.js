@@ -25,7 +25,7 @@ const validations  = {
     }
 };
 
-export const check_valid_field = (type, value) => {
+export const validate_field = (type, value) => {
     type = typeof(type) !== 'undefined' ? type : "text"; //default type for validations
     value = typeof(value) !== 'undefined' ? value : ""; //default value for validate
 
@@ -39,7 +39,9 @@ export const check_valid_field = (type, value) => {
 
 };
 
-export const check_repas = (pass, repass) => {
+const valid_types = ["text", "email", "password"];
+
+export const validate_repass = (pass, repass) => {
     pass = typeof(pass) !== 'undefined' ? pass : "valid";
     repass = typeof(pass) !== 'undefined' ? repass : "invalid";
 
@@ -50,7 +52,18 @@ export const check_repas = (pass, repass) => {
     };
 };
 
-const check_all = (form_id) => { // will return an object with an array of valids and a object of feedback.
-    const elements = document.getElementById(form_id).elements;
-    console.log(elements);
+export const validate_all = (form_id) => { // will return an object with an array of valids and a object of feedback.
+    const ele = document.getElementById(form_id);
+    let results = [];
+    let all_valid = true;
+
+    for (let i = 0; i < ele.length; i++ ) {
+        const {type, value, required} = ele[i];
+
+        if (required && valid_types.includes(type)) {
+            results[i] = validations[type](value);
+            all_valid = all_valid && results[i].valid;
+        }
+    }
+    return({valid: all_valid, results: results});
 };
