@@ -1,7 +1,6 @@
-export const validations  = {
+const validations  = {
     email: (email) => { // cuando el tipo del campo a ser validado es email.
         const reEmail = /\S+@\S+\.\S+/; //expresion regular para verificar email.
-        email = typeof(email) !== 'undefined' ? email : "invalid";
         if (reEmail.test(email)) {
             return {valid: true, msg: "ok", class: "valid"}
         } else {
@@ -23,16 +22,35 @@ export const validations  = {
         } else {
             return {valid: false, msg: "Campo requerido", class: "invalid"}
         }
-    },
-    re_passw: (pass, repass) => {
-        pass = typeof(pass) !== 'undefined' ? pass : "";
-        repass = typeof(pass) !== 'undefined' ? repass : "";
-        if (pass === "") {
-            return {valid: false, msg: "Campo requerido", class: "invalid"}
-        } else if (pass !== repass){
-            return {valid: false, msg: "Contraseña no coicide", class: "invalid"}
-        } else {
-            return {valid: true, msg: "ok", class: "valid"}
-        };
     }
+};
+
+export const check_valid_field = (type, value) => {
+    type = typeof(type) !== 'undefined' ? type : "text"; //default type for validations
+    value = typeof(value) !== 'undefined' ? value : ""; //default value for validate
+
+    if (type === "email" || type === "password" || type === "text") {
+        return validations[type](value);
+    } else {
+        return {valid: false, msg: "Invalid Field", class:"invalid"}
+    }
+    // funcion que se encarga de validar a través de type, id (que coincida con los requeridos)
+    // y un valor. si id = * se revisa la validación de todos los campos requeridos.
+
+};
+
+export const check_repas = (pass, repass) => {
+    pass = typeof(pass) !== 'undefined' ? pass : "valid";
+    repass = typeof(pass) !== 'undefined' ? repass : "invalid";
+
+    if (pass !== repass){
+        return {valid: false, msg: "Contraseña no coicide", class: "invalid"}
+    } else {
+        return {valid: true, msg: "ok", class: "valid"}
+    };
+};
+
+const check_all = (form_id) => { // will return an object with an array of valids and a object of feedback.
+    const elements = document.getElementById(form_id).elements;
+    console.log(elements);
 };

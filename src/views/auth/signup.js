@@ -15,28 +15,20 @@ export const SignUp = () => {
 
     const [state, setState] = useState({ //local Store
         fields: {
-            signup_email: "", // id del campo email del formulario, contiene el input del usuario.
-            signup_passw: "",
-            signup_repas: "",
-            signup_fname: "",
-            signup_lname: "", 
+            signup_email: {value: "", class: fb_styles.neutral, msg: ""}, // id de todos los campos en el formulario, contiene el input del usuario.
+            signup_passw: {value: "", class: fb_styles.neutral, msg: ""},
+            signup_repas: {value: "", class: fb_styles.neutral, msg: ""},
+            signup_fname: {value: "", class: fb_styles.neutral, msg: ""},
+            signup_lname: {value: "", class: fb_styles.neutral, msg: ""}, 
         },
-        rq_fields_fb: { // key de cada objeto debe ser igual al id en constante "required_fields"
-            signup_email: {class: fb_styles.neutral, msg: ""}, // contiene el feedback al usuario.
-            signup_passw: {class: fb_styles.neutral, msg: ""}, // contiene el feedback al usuario
-            signup_repas: {class: fb_styles.neutral, msg: ""},
-            signup_fname: {class: fb_styles.neutral, msg: ""},
-            sugnup_lname: {class: fb_styles.neutral, msg: ""}
-        },  
         password_type: "password" // flag para mostrar/ocultar contraseña.
     });
     
     const required_fields= [ // array de campos requeridos por el formulario y su fn de validación. ID coincide con id del campo
-        {id: "signup_email", validation: validations.email},
-        {id: "signup_passw", validation: validations.password},
-        {id: "signup_repas", validation: validations.re_passw},
-        {id: "signup_fname", validation: validations.text},
-        {id: "signup_lname", validation: validations.text}
+        {id: "signup_email", type="email"},
+        {id: "signup_passw", type="password"},
+        {id: "signup_fname", type="text"},
+        {id: "signup_lname", type="text"}
     ];
 
     const check_valid = (type, id, value) => { 
@@ -91,7 +83,7 @@ export const SignUp = () => {
         const new_field = Object.assign(state.fields, {
             [event.target.id]: event.target.value
         });
-        const new_fb = check_valid(event.target.type, event.target.id, event.target.value); // se llama a la función de validacion según el tipo del campo que genero el evento.
+        const new_fb = validations.check_valid_field(event.target.type, event.target.value)
         
         setState({
             fields: new_field,
@@ -154,6 +146,7 @@ export const SignUp = () => {
                             onBlur={valid_on_blur}
                             disabled={store.loading_API}
                             autoComplete="true"
+                            required
                         />
                     </div>
                     {/* pasword field */}
@@ -168,6 +161,7 @@ export const SignUp = () => {
                             onChange={handleChange}
                             onBlur={valid_on_blur}
                             disabled={store.loading_API}
+                            required
                         />
                     </div>
                     {/* submit button */}
