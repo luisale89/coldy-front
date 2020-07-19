@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             ],
             current_role: 0,
             user_logged: false,
+            loading_API: false,
             user: {
                 id: 0,
                 fname:"Luis",
@@ -26,8 +27,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-				console.log("data-loaded")
+                */
+                setStore({loading_API: true});
+                console.log("data-loaded");
+                return "luis";
             },
             close_sidebar: () => {
                 setStore({side_bar: false})
