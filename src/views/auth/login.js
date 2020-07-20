@@ -23,7 +23,7 @@ export const Login = () => {
         // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
         event.preventDefault();
 
-        const valid_form = validate_all(event.target.id);
+        const valid_form = validate_all(event.target.id); // se validan todos los campos del formulario.
         const new_fb = Object.assign(state.rq_fields_fb, valid_form.feedback);
 
         setState({
@@ -53,7 +53,7 @@ export const Login = () => {
             ...state
         });
 
-        check_field(event);
+        check_field(event); //hace validación del campo con el nuevo valor.
     };
 
     const check_field = (event) => {
@@ -68,28 +68,6 @@ export const Login = () => {
             ...state
         });
     }
-
-    // const show_password = () => {
-    //     //Función que cambia tipo del input para el password, para poder mostrar los caracteres
-    //     const new_vis = Object.assign(state, {
-    //         password_visible: pass_field.show
-    //     });
-    //     setState({
-    //         password_visible: new_vis,
-    //         ...state
-    //     });
-    // };
-
-    // const hide_password = () => {
-    //     //Función que cambia tipo del input para el password, para poder mostrar los caracteres
-    //     const new_vis = Object.assign(state, {
-    //         password_visible: pass_field.hide
-    //     });
-    //     setState({
-    //         password_visible: new_vis,
-    //         ...state
-    //     });
-    // };
 
     return (
         <div id="login-view">
