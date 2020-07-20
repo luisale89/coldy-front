@@ -22,16 +22,16 @@ export const Login = () => {
     const handleSubmit = (event) => { 
         // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
         event.preventDefault();
+        const {valid, feedback} = validate_all(event.target.id)
 
-        const valid_form = validate_all(event.target.id); // se validan todos los campos del formulario.
-        const new_fb = Object.assign(state.rq_fields_fb, valid_form.feedback);
+        const new_fb = Object.assign(state.rq_fields_fb, feedback);
 
         setState({
             rq_fields_fb: new_fb,
             ...state
         });
 
-        if (valid_form.valid) { // si todos los campos requeridos fueron validados
+        if (valid) { // si todos los campos requeridos fueron validados
             const result = actions.loadSomeData(); // envío de formulario a API - Recibe mensajes desde backend y muestra feedback en formulario en caso de algún error.
             console.log(result);
         } else {
@@ -41,11 +41,12 @@ export const Login = () => {
 
     const handleChange = (event) => { 
         // función que guarda y valida los inputs del usuario, además realiza validación
-        //con cada cambio del input.
+        //con cada cambio del input. (**** controla los espacios en blanco)
         const {id, value} = event.target;
+        const new_val = value.split(" ").join(""); // elimina espacios.
 
         const new_field = Object.assign(state.fields, {
-            [id]: value
+            [id]: new_val.trim()
         });
 
         setState({
