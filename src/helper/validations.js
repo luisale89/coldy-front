@@ -73,3 +73,9 @@ export const validate_all = (form_id) => { // will return an object with a valid
     }
     return({valid: all_valid, feedback: feedback});
 };
+
+export const noSpace = (event) => {
+    if (event.charCode === 32) {
+        event.preventDefault();
+    }
+}

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import { Context } from '../../store/appContext';
-import { validate_all, validate_field, fb_styles } from '../../helper/validations';
+import { validate_all, validate_field, fb_styles, noSpace } from '../../helper/validations';
 
 export const Login = () => {
 
@@ -43,10 +43,9 @@ export const Login = () => {
         // función que guarda y valida los inputs del usuario, además realiza validación
         //con cada cambio del input. (**** controla los espacios en blanco)
         const {id, value} = event.target;
-        const new_val = value.split(" ").join(""); // elimina espacios.
 
         const new_field = Object.assign(state.fields, {
-            [id]: new_val.trim()
+            [id]: value
         });
 
         setState({
@@ -78,7 +77,7 @@ export const Login = () => {
             </div>
             <div className="login-body">
                 <div className="app-logo">Coldy App</div>
-                <form id="login-form" onSubmit={handleSubmit} noValidate>
+                <form id="login-form" onSubmit={handleSubmit} noValidate autoComplete="on">
                     {/* email field */}
                     <div className="form-group">
                         <label htmlFor="login_email">CORREO ELECTRÓNICO</label>
@@ -89,10 +88,10 @@ export const Login = () => {
                             id="login_email"
                             value={state.fields.login_email || ""}
                             onChange={handleChange}
+                            onKeyPress={noSpace}
                             onBlur={check_field}
                             disabled={store.loading_API}
-                            autoComplete="true"
-                            required={true}
+                            required
                         />
                     </div>
                     {/* pasword field */}
@@ -104,10 +103,12 @@ export const Login = () => {
                             placeholder="Ingresa tu contraseña" 
                             id="login_passw"
                             value={state.fields.login_passw || ""}
+                            onKeyPress={noSpace}
                             onChange={handleChange}
                             onBlur={check_field}
                             disabled={store.loading_API}
-                            required={true}
+                            autoComplete="off"
+                            required
                         />
                     </div>
                     {/* submit button */}
