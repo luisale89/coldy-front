@@ -1,10 +1,26 @@
+/*Este archivo contiene todas las validaciones que se van a aplicar a los formularios
+invalid-tooltip es el nombre de la clase que se debe asignar a los mensajes que serán mostrados al
+usuario como feedback.
+
+- Cada función requiere como parámetro:
+1.- El evento que fué disparado por el input en el formulario.
+2.- Campos que están en el state, los que sirven de moldes para ser actualizados como salida de cada función.
+
+** Validate_all requiere como parámetro el id del formulario que se quiere validar, para que se pueda
+encontrar a través del DOM e iterar cada uno de sus elementos **
+
+Cada función retorna un objeto igual al state, que luego será actualizado en la función callback.
+
+*/
+
 export const fb_styles= { // util para mostrar feedback al usuario en los formularios.
     valid: "invalid-tooltip",
     invalid: "invalid-tooltip active"
 };
 
-const valid_types = ["text", "email", "password"];
+const valid_types = ["text", "email", "password"]; // tipos de inputs que se están validando.
 
+// estas son las validaciones..
 const validations  = {
     email: (email) => { // cuando el tipo del campo a ser validado es email.
         const reEmail = /\S+@\S+\.\S+/; //expresion regular para verificar email.
