@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import { Context } from '../../store/appContext';
 import { validate_all, validate_field, fb_styles, noSpace } from '../../helper/validations';
+import { handleChange } from '../../helper/handlers';
 
 export const Login = () => {
 
@@ -40,28 +41,8 @@ export const Login = () => {
         };
     };
 
-    const handleChange = (event) => { 
-        // función que guarda y valida los inputs del usuario, además realiza validación
-        //con cada cambio del input. (**** controla los espacios en blanco)
-        const {value, type, name, checked} = event.target;
-
-        if (type === "checkbox") {
-            const new_field = Object.assign(state.fields, {
-                [name]: checked
-            });
-            setState({
-                fields: new_field,
-                ...state
-            })
-        } else {
-            const new_field = Object.assign(state.fields, {
-                [name]: value
-            });
-            setState({
-                fields: new_field,
-                ...state
-            });
-        }
+    const handleInputChange = (event) => { 
+        setState({fields: handleChange(event, state.fields), ...state})
         check_field(event); //hace validación del campo al cambiar el valor.
     };
 
@@ -97,7 +78,7 @@ export const Login = () => {
                             placeholder="Ingesa tu email" 
                             name="login_email"
                             value={state.fields.login_email || ""}
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             onKeyPress={noSpace}
                             onBlur={check_field}
                             disabled={store.loading_API}
@@ -114,7 +95,7 @@ export const Login = () => {
                             name="login_passw"
                             value={state.fields.login_passw || ""}
                             onKeyPress={noSpace}
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             onBlur={check_field}
                             disabled={store.loading_API}
                             autoComplete="off"
@@ -127,9 +108,10 @@ export const Login = () => {
                             type="checkbox"//cambia para mostrar/esconder contraseña ingresada.
                             name="remember_user"
                             checked = {state.fields.remember_user}
-                            onChange = {handleChange}
+                            onChange = {handleInputChange}
                         />
                     </div>
+                    <Link to="/recupera"></Link>
                     {/* submit button */}
                     <button 
                         className="btn btn-success" 
