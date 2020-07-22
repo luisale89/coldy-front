@@ -21,15 +21,13 @@ export const Login = () => {
         password_type: "password" // flag para mostrar/ocultar contraseña.
     });
 
-    const handleSubmit = (event) => { 
+    const handleSubmit = (event) => { //event is the form that submit
         // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
         event.preventDefault();
-        const {valid, feedback} = validate_all(event.target.id) // valida todos los campos requeridos del formulario con id
-
-        const new_fb = Object.assign(state.rq_fields_fb, feedback);
+        const {valid, feedback} = validate_all(event.target.id, state.rq_fields_fb) // valida todos los campos requeridos del formulario con id
 
         setState({
-            rq_fields_fb: new_fb,
+            rq_fields_fb: feedback,
             ...state
         });
 
@@ -43,21 +41,11 @@ export const Login = () => {
 
     const handleInputChange = (event) => { 
         setState({fields: handleChange(event, state.fields), ...state})
-        check_field(event); //hace validación del campo al cambiar el valor.
+        check_field(event);
     };
 
     const check_field = (event) => {
-        const {name, type, value, required} = event.target;
-
-        if (required) { // si el campo del formulario tiene el atributo "required"
-            const new_fb = Object.assign(state.rq_fields_fb, {
-                [name]: validate_field(type, value).feedback
-            })
-            setState({
-                rq_fields_fb: new_fb,
-                ...state
-            });
-        }
+        setState({rq_fields_fb: validate_field(event, state.rq_fields_fb), ...state});
     }
 
     return (

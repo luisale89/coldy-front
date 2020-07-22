@@ -35,43 +35,46 @@ const validations  = {
     }
 };
 
-export const validate_field = (type, value) => {
+export const validate_field = (event, rq_fields_fb) => {
+    let {name, type, value} = event.target;
     type = typeof(type) !== 'undefined' ? type : "text"; //default type for validations
     value = typeof(value) !== 'undefined' ? value : ""; //default value for validate
 
     if (!valid_types.includes(type)) {
-        return {valid: false, feedback: {class: fb_styles.invalid, msg: "bug: invalid type"}}
+        return Object.assign(rq_fields_fb, {[name]: {class: fb_styles.invalid, msg: "bug: invalid type"}})
+
     } else if (value.trim() === "") {
-        return {valid: false, feedback: {class: fb_styles.invalid, msg: "Campo requerido"}}
+        return Object.assign(rq_fields_fb, {[name]: {class: fb_styles.invalid, msg: "Campo requerido"}})
+
     } else {
-        return validations[type](value);
+        return Object.assign(rq_fields_fb, {[name]: validations[type](value).feedback})
     }
 };
 
-export const validate_all = (form_id) => { // will return an object with a valid flag and a object of feedback.
+export const validate_all = (form_id, rq_fields_fb) => { // will return an object with a valid flag and a object of feedback.
     const ele = document.getElementById(form_id);
     let feedback = {};
     let all_valid = true;
 
     for (let i = 0; i < ele.length; i++ ) {
 
-        const {id, type, value, required} = ele[i]; //se desestructura cada elemento del formulario.
+        const {name, type, value, required} = ele[i]; //se desestructura cada elemento del formulario.
 
         if (required) {
             if (value.trim() === "") { // si el campo está vacío:
-                feedback[id] = {class: fb_styles.invalid, msg: "Campo Requerido"};
+                feedback[name] = {class: fb_styles.invalid, msg: "Campo Requerido"};
                 all_valid = false;
             } else if (!valid_types.includes(type)) { // si el tipo del campo es inválido -> bug
-                feedback[id] = {class: fb_styles.invalid, msg: "bug: invalid type"};
+                feedback[name] = {class: fb_styles.invalid, msg: "bug: invalid type"};
                 all_valid = false;
             } else { // se ejecuta validación del campo.
                 const rev = validations[type](value);
-                feedback[id] = rev.feedback;
+                feedback[name] = rev.feedback;
                 all_valid = all_valid && rev.valid;
             }
         }
     }
-    return({valid: all_valid, feedback: feedback});
+    return({valid: all_valid, feedback: Object.assign(rq_fields_fb, feedback)});
 };
 
 export const noSpace = (event) => {
