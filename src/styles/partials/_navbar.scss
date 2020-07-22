@@ -5,7 +5,7 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    .coldy-logo {
+    .app-logo {
         color: white;
         font-size: 20px;
         padding: 6px 12px;
@@ -47,13 +47,17 @@
     }
     #open-sidebar {
         display: inline-block;
-        background: $color-success;
+        background: #fff;
+        border: 1px solid $color-primary;
+        border-left: 0px;
         border-radius: 0px 10px 10px 0px;
-        color: #fff;
+        padding: 10px 5px;
+        color: $color-primary;
         position: fixed;
         z-index: 1;
-        font-size: 30px;
-        top: 70px;
+        font-size: 12px;
+        font-weight: bold;
+        bottom: 40px;
         left: 0px;
         @media only screen and (min-width: 768px) {
             display: none;

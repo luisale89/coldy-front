@@ -27,17 +27,20 @@
 @mixin btn($main-color) {
     background-color: $main-color;
     color: #fff;
-    border: 1px solid $main-color;
+    border: none;
     &:hover {
-        background-color: darken($color: $main-color, $amount: 15%);
+        background-color: darken($color: $main-color, $amount: 5%);
         color: #fff;
     };
     &:focus {
         outline: none;
         box-shadow: 0px 0px 6px $main-color;
     };
+    &:disabled {
+        background-color: darken($color: $main-color, $amount: 25%);
+        cursor: default;
+    }
 }
-
 
 .btn-primary {
     @include btn($color-primary);
@@ -88,15 +91,16 @@
     justify-content: center;
     padding: 0px;
     width: 100%;
-    button {
-        background-color: darken($color: $color-bg, $amount: 10%);
-        border: 1px solid $color-bg;
-        color: $color-primary;
-        font-size: 12px;
+    a {
+        background-color: #fff;
+        border: 1px solid darken($color: $color-bg, $amount: 15%);
+        color: darken($color: $color-bg, $amount: 60%);
+        font-size: 16px;
         padding: 6px 12px;
         width: 100%;
+        text-decoration: none;
+        text-align: center;
         cursor: pointer;
-        float: left;
         &:not(:last-child) {
             border-right: none;
         }
@@ -107,7 +111,9 @@
             outline: none;
         }
         &.active {
-            background-color: darken($color: $color-bg, $amount: 20%)
+            background-color: $color-bg;
+            color: $color-primary;
+            font-weight: bold;
         }
     }
     &::after{

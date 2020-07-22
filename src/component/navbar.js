@@ -8,7 +8,7 @@ export const Navbar = () => {
 
     return (
         <nav id="navbar">
-            <NavLink to="/" className="coldy-logo">
+            <NavLink to={`/${store.app_roles[store.current_role].name}`} className="app-logo">
                 <div>coldy App</div>
             </NavLink>
             <div className="main-search">
@@ -16,7 +16,7 @@ export const Navbar = () => {
                 <input type="text" className="main-search" placeholder="Buscar..."></input>
             </div>
             <div className="user-box">user</div>
-            <span id="open-sidebar" onClick={actions.open_sidebar}>&#9776;</span>
+            <span id="open-sidebar" onClick={actions.open_sidebar}><i className="fas fa-chevron-circle-right fa-2x"></i></span>
         </nav>
     );
 }
