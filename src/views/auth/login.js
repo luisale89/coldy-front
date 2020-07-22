@@ -11,6 +11,7 @@ export const Login = () => {
         fields: {
             login_email: "", // id del campo email del formulario, contiene el input del usuario.
             login_passw: "", // id del campo password del formulario, contiene el input del usuario.
+            remember_user: false
         },
         rq_fields_fb: { // key de cada objeto debe ser igual al id en constante "required_fields"
             login_email: {class: fb_styles.valid, msg: ""}, // contiene el feedback al usuario.
@@ -22,7 +23,7 @@ export const Login = () => {
     const handleSubmit = (event) => { 
         // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
         event.preventDefault();
-        const {valid, feedback} = validate_all(event.target.id)
+        const {valid, feedback} = validate_all(event.target.id) // valida todos los campos requeridos del formulario con id
 
         const new_fb = Object.assign(state.rq_fields_fb, feedback);
 
@@ -42,31 +43,40 @@ export const Login = () => {
     const handleChange = (event) => { 
         // función que guarda y valida los inputs del usuario, además realiza validación
         //con cada cambio del input. (**** controla los espacios en blanco)
-        const {id, value} = event.target;
+        const {value, type, name, checked} = event.target;
 
-        const new_field = Object.assign(state.fields, {
-            [id]: value
-        });
-
-        setState({
-            fields: new_field,
-            ...state
-        });
-
-        check_field(event); //hace validación del campo con el nuevo valor.
+        if (type === "checkbox") {
+            const new_field = Object.assign(state.fields, {
+                [name]: checked
+            });
+            setState({
+                fields: new_field,
+                ...state
+            })
+        } else {
+            const new_field = Object.assign(state.fields, {
+                [name]: value
+            });
+            setState({
+                fields: new_field,
+                ...state
+            });
+        }
+        check_field(event); //hace validación del campo al cambiar el valor.
     };
 
     const check_field = (event) => {
-        //Función que valida al salir del foco de un input (OnFocusOut)
-        const {id, type, value} = event.target;
+        const {name, type, value, required} = event.target;
 
-        const new_fb = Object.assign(state.rq_fields_fb, {
-            [id]: validate_field(type, value).feedback
-        })
-        setState({
-            rq_fields_fb: new_fb,
-            ...state
-        });
+        if (required) { // si el campo del formulario tiene el atributo "required"
+            const new_fb = Object.assign(state.rq_fields_fb, {
+                [name]: validate_field(type, value).feedback
+            })
+            setState({
+                rq_fields_fb: new_fb,
+                ...state
+            });
+        }
     }
 
     return (
@@ -85,7 +95,7 @@ export const Login = () => {
                         <input 
                             type="email" 
                             placeholder="Ingesa tu email" 
-                            id="login_email"
+                            name="login_email"
                             value={state.fields.login_email || ""}
                             onChange={handleChange}
                             onKeyPress={noSpace}
@@ -101,7 +111,7 @@ export const Login = () => {
                         <input 
                             type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
                             placeholder="Ingresa tu contraseña" 
-                            id="login_passw"
+                            name="login_passw"
                             value={state.fields.login_passw || ""}
                             onKeyPress={noSpace}
                             onChange={handleChange}
@@ -109,6 +119,15 @@ export const Login = () => {
                             disabled={store.loading_API}
                             autoComplete="off"
                             required
+                        />
+                    </div>
+                    <div className="checkbox-group">
+                        <label>Recuérdame</label>
+                        <input 
+                            type="checkbox"//cambia para mostrar/esconder contraseña ingresada.
+                            name="remember_user"
+                            checked = {state.fields.remember_user}
+                            onChange = {handleChange}
                         />
                     </div>
                     {/* submit button */}
