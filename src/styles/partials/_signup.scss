@@ -1,10 +1,10 @@
-#login-view {
+#signup-view {
     background-color: $color-primary;
     height: 100%;
     width: 100%;
     overflow: auto;
     padding: 0px;
-    .login-header {
+    .signup-header {
         background-color: $color-secondary;
         height: 65px;
         display: flex;
@@ -17,6 +17,11 @@
             color: #fff;
             &:hover {
                 text-decoration: underline;
+            }
+            &:disabled {
+                text-decoration: none;
+                color: $color-bg;
+                
             }
         }
     }
@@ -46,12 +51,6 @@
                     @include tooltip($color-warning, #fff);
                     right: 0px;
                     top: 15px;
-                }
-            }
-            .checkbox-group {
-                color: #fff;
-                input{
-                    margin-left: 10px;
                 }
             }
             button {

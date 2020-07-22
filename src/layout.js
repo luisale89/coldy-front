@@ -16,7 +16,7 @@ import { ManteIndex as M_index } from "./views/mantenedor/mante-index";
 
 // * Auth_Views
 import { Login } from "./views/auth/login";
-import { SignUp } from "./views/auth/signup";
+// import { SignUp } from "./views/auth/signup";
 
 // ! not-found View
 import { NotFound } from "./views/notFound";
@@ -67,7 +67,7 @@ export const Layout = () => {
             <Router history={history}>
                 <Switch>
                     <Route path="/ingreso" component ={Login} />
-                    <Route path="/registro" component = {SignUp} /> 
+                    {/* <Route path="/registro" component = {SignUp} />  */}
                     <Redirect from="/*" to="/ingreso" />
                 </Switch>
             </Router>
