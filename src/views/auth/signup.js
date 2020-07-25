@@ -11,78 +11,137 @@ export const SignUp = () => {
 
     const [state, setState] = useState({ //local Store
         fields: {
-            signup_email: {value: "", class: fb_styles.neutral, msg: ""}, // id de todos los campos en el formulario, contiene el input del usuario.
-            signup_passw: {value: "", class: fb_styles.neutral, msg: ""},
-            signup_repas: {value: "", class: fb_styles.neutral, msg: ""},
-            signup_fname: {value: "", class: fb_styles.neutral, msg: ""},
-            signup_lname: {value: "", class: fb_styles.neutral, msg: ""}, 
+            signup_email: "", // id del campo email del formulario, contiene el input del usuario.
+            signup_passw: "", // id del campo password del formulario, contiene el input del usuario.
+            signup_repas: "",
+            signup_lname: "",
+            signup_fname: ""
         },
-        rq_fields_fb: {
-            signup_email: {value: "", class: fb_styles.neutral, msg: ""}
-        },
+        rq_fields_fb: { // key de cada objeto debe ser igual al id en constante "required_fields"
+            signup_email: {class: fb_styles.valid, msg: ""}, // contiene el feedback al usuario.
+            signup_passw: {class: fb_styles.valid, msg: ""}, 
+            signup_repas: {class: fb_styles.valid, msg: ""},
+            signup_lname: {class: fb_styles.valid, msg: ""},
+            signup_fname: {class: fb_styles.valid, msg: ""}
+        },  
         password_type: "password" // flag para mostrar/ocultar contraseña.
     });
-    
 
-    // const show_password = () => {
-    //     //Función que cambia tipo del input para el password, para poder mostrar los caracteres
-    //     const new_vis = Object.assign(state, {
-    //         password_visible: pass_field.show
-    //     });
-    //     setState({
-    //         password_visible: new_vis,
-    //         ...state
-    //     });
-    // };
+    const handleSubmit = (event) => { //event is the form that submit
+        // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
+        event.preventDefault();
+        const {valid, feedback} = validate_all(event.target.id, state.rq_fields_fb) // valida todos los campos requeridos del formulario con id
 
-    // const hide_password = () => {
-    //     //Función que cambia tipo del input para el password, para poder mostrar los caracteres
-    //     const new_vis = Object.assign(state, {
-    //         password_visible: pass_field.hide
-    //     });
-    //     setState({
-    //         password_visible: new_vis,
-    //         ...state
-    //     });
-    // };
+        setState({
+            rq_fields_fb: feedback,
+            ...state
+        });
+
+        if (valid) { // si todos los campos requeridos fueron validados
+            const result = actions.loadSomeData(); // envío de formulario a API - Recibe mensajes desde backend y muestra feedback en formulario en caso de algún error.
+            console.log(result);
+        } else {
+            console.log("no cumple");
+        };
+    };
+
+    const handleInputChange = (event) => { 
+        setState({fields: handleChange(event, state.fields), ...state})
+        check_field(event);
+    };
+
+    const check_field = (event) => {
+        setState({rq_fields_fb: validate_field(event, state.rq_fields_fb), ...state});
+    }
 
     return (
-        <div id="login-view">
-            <div className="login-header">
+        <div id="signup-view">
+            <div className="signup-header">
                 {!store.loading_API && <a href="https://app.friotermia.com">Volver a friotermia</a>}
-                {!store.loading_API && <Link to="/registro" >¿No tienes cuenta aún?</Link>}
+                {!store.loading_API && <Link to="/ingreso" >¿Ya tienes cuenta? ingresa aquí</Link>}
             </div>
-            <div className="login-body">
+            <div className="signup-body">
                 <div className="app-logo">Coldy App</div>
-                <form id="login-form" onSubmit={handleSubmit} noValidate>
+                <form id="signup-form" onSubmit={handleSubmit} noValidate autoComplete="on">
+                    {/* first name field */}
+                    <div className="form-group">
+                        <label>NOMBRE</label>
+                        <span className={state.rq_fields_fb.signup_fname.class}>{icons.exclamation} {state.rq_fields_fb.signup_fname.msg}</span>
+                        <input 
+                            type="text" 
+                            placeholder="Ingesa tu Nombre" 
+                            name="signup_fname"
+                            value={state.fields.signup_fname || ""}
+                            onChange={handleInputChange}
+                            onKeyPress={noSpace}
+                            onBlur={check_field}
+                            disabled={store.loading_API}
+                            required
+                        />
+                    </div>
+                    {/* first name field */}
+                    <div className="form-group">
+                        <label>APELLIDO</label>
+                        <span className={state.rq_fields_fb.signup_lname.class}>{icons.exclamation} {state.rq_fields_fb.signup_lname.msg}</span>
+                        <input 
+                            type="text" 
+                            placeholder="Ingesa tu Apellido" 
+                            name="signup_fname"
+                            value={state.fields.signup_fname || ""}
+                            onChange={handleInputChange}
+                            onKeyPress={noSpace}
+                            onBlur={check_field}
+                            disabled={store.loading_API}
+                            required
+                        />
+                    </div>
                     {/* email field */}
                     <div className="form-group">
-                        <label htmlFor="login_email">CORREO ELECTRÓNICO</label>
-                        <span className={state.rq_fields_fb.login_email.class}><i className="fas fa-exclamation-triangle"></i> {state.rq_fields_fb.login_email.msg}</span>
+                        <label>CORREO ELECTRÓNICO</label>
+                        <span className={state.rq_fields_fb.signup_email.class}>{icons.exclamation} {state.rq_fields_fb.signup_email.msg}</span>
                         <input 
                             type="email" 
                             placeholder="Ingesa tu email" 
-                            id="login_email"
-                            value={state.fields.login_email || ""}
-                            onChange={handleChange}
-                            onBlur={valid_on_blur}
+                            name="signup_email"
+                            value={state.fields.signup_email || ""}
+                            onChange={handleInputChange}
+                            onKeyPress={noSpace}
+                            onBlur={check_field}
                             disabled={store.loading_API}
-                            autoComplete="true"
                             required
                         />
                     </div>
                     {/* pasword field */}
                     <div className="form-group">
-                        <label htmlFor="login_passw">CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.login_passw.class}><i className="fas fa-exclamation-triangle"></i> {state.rq_fields_fb.login_passw.msg}</span>
+                        <label>CONTRASEÑA</label>
+                        <span className={state.rq_fields_fb.signup_passw.class}>{icons.exclamation} {state.rq_fields_fb.signup_passw.msg}</span>
                         <input 
                             type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
                             placeholder="Ingresa tu contraseña" 
-                            id="login_passw"
-                            value={state.fields.login_passw || ""}
-                            onChange={handleChange}
-                            onBlur={valid_on_blur}
+                            name="signup_passw"
+                            value={state.fields.signup_passw || ""}
+                            onKeyPress={noSpace}
+                            onChange={handleInputChange}
+                            onBlur={check_field}
                             disabled={store.loading_API}
+                            autoComplete="off"
+                            required
+                        />
+                    </div>
+                    {/* pasword field */}
+                    <div className="form-group">
+                        <label>REPITE TU CONTRASEÑA</label>
+                        <span className={state.rq_fields_fb.signup_repas.class}>{icons.exclamation} {state.rq_fields_fb.signup_repas.msg}</span>
+                        <input 
+                            type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
+                            placeholder="Repite tu contraseña" 
+                            name="signup_repas"
+                            value={state.fields.signup_repas || ""}
+                            onKeyPress={noSpace}
+                            onChange={handleInputChange}
+                            onBlur={check_field}
+                            disabled={store.loading_API}
+                            autoComplete="off"
                             required
                         />
                     </div>
@@ -91,11 +150,11 @@ export const SignUp = () => {
                         className="btn btn-success" 
                         type="submit" 
                         disabled={store.loading_API}>
-                            {store.loading_API ? <span>Cargando <i className='fas fa-spinner fa-spin'></i></span> : "Iniciar Sesión"}
+                            {store.loading_API ? <span>{icons.spinner} Cargando</span> : "Iniciar Sesión"}
                     </button>
                 </form>
             </div>
-            <div className="login-footer"></div>
+            <div className="signup-footer"></div>
         </div>
     );
 }
