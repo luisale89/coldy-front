@@ -1,15 +1,11 @@
 import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import { Context } from '../../store/appContext';
-import { validations } from '../../helper/validations';
+import { validate_all, validate_field, fb_styles, noSpace } from '../../helper/validations';
+import { handleChange } from '../../helper/handlers';
+import { solid_icons as icons } from '../../helper/icons';
 
 export const SignUp = () => {
-
-    const fb_styles= { // util para mostrar feedback al usuario en los formularios.
-        valid: "invalid-tooltip",
-        invalid: "invalid-tooltip active",
-        neutral: "invalid-tooltip"
-    };
 
     const {store, actions} = useContext(Context); //global store
 
@@ -21,86 +17,12 @@ export const SignUp = () => {
             signup_fname: {value: "", class: fb_styles.neutral, msg: ""},
             signup_lname: {value: "", class: fb_styles.neutral, msg: ""}, 
         },
+        rq_fields_fb: {
+            signup_email: {value: "", class: fb_styles.neutral, msg: ""}
+        },
         password_type: "password" // flag para mostrar/ocultar contraseña.
     });
     
-    const required_fields= [ // array de campos requeridos por el formulario y su fn de validación. ID coincide con id del campo
-        {id: "signup_email", type="email"},
-        {id: "signup_passw", type="password"},
-        {id: "signup_fname", type="text"},
-        {id: "signup_lname", type="text"}
-    ];
-
-    const check_valid = (type, id, value) => { 
-        // funcion que se encarga de validar a través de type, id (que coincida con los requeridos)
-        // y un valor. si id = * se revisa la validación de todos los campos requeridos.
-        let fb = state.rq_fields_fb;
-        let check = {};
-        required_fields.forEach((item) => { 
-            if (id === item.id) { // revisa si el campo necesita validación
-                if (id.includes("repas")) {
-                    check = validations.re_passw(state.fields.signup_passw, value);
-                } else {
-                    check = validations[type](value)
-                };
-                if (check !== undefined) {
-                    fb = Object.assign(state.rq_fields_fb, {
-                        [id]: {class: fb_styles[check.class], msg: check.msg}
-                    });
-                };
-            };
-        });
-        return fb;
-    };
-
-    const handleSubmit = (event) => { 
-        // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
-        event.preventDefault();
-        let new_fb = state.rq_fields_fb;
-
-        const fb_val = required_fields.map((item) => {
-            const check = item.validation(state.fields[item.id]);
-            new_fb = Object.assign(state.rq_fields_fb, {
-                [item.id]: {class: fb_styles[check.class], msg: check.msg}
-            });
-            return check.valid;
-        });
-        setState({
-            rq_fields_fb: new_fb,
-            ...state
-        });
-        if (fb_val.includes(false)) { // si uno de los campos no es válido no permite el envío de form a API
-            console.log("no cumple");
-        } else {
-            const result = actions.loadSomeData(); // envío de formulario a API - Recibe mensajes desde backend y muestra feedback en formulario en caso de algún error.
-            console.log(result);
-        };
-    };
-
-    const handleChange = (event) => { 
-        // función que guarda y valida los inputs del usuario, además realiza validación
-        //con cada cambio del input.
-        const new_field = Object.assign(state.fields, {
-            [event.target.id]: event.target.value
-        });
-        const new_fb = validations.check_valid_field(event.target.type, event.target.value)
-        
-        setState({
-            fields: new_field,
-            rq_fields_fb: new_fb,
-            ...state
-        });
-    };
-
-    const valid_on_blur = (event) => {
-        //Función que valida al salir del foco de un input (OnFocusOut)
-        const new_fb = check_valid(event.target.type, event.target.id, event.target.value); // revisa validación del campo según el tipo
-
-        setState({
-            rq_fields_fb: new_fb,
-            ...state
-        });
-    }
 
     // const show_password = () => {
     //     //Función que cambia tipo del input para el password, para poder mostrar los caracteres

@@ -1,6 +1,7 @@
 /* Autoprefixer grid: autoplace */
 
 @import 'vars';
+@import 'mixin';
 
 * {
     box-sizing: border-box;
@@ -30,3 +31,4 @@ code {
 @import '/partials/navbar';
 @import '/partials/sidebar';
 @import '/partials/button';
+@import '/partials/form';

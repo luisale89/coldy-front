@@ -32,28 +32,6 @@
             max-width: 500px;
             padding: 20px;
             margin: 0px auto;
-            .form-group {
-                position: relative;
-                width: 100%;
-                label {
-                    @include form-label(#fff)
-                }
-                input {
-                    @include form-input($color-primary, $color-secondary, #fff);
-                    border-bottom: 1px solid $color-secondary;
-                }
-                .invalid-tooltip {
-                    @include tooltip($color-warning, #fff);
-                    right: 0px;
-                    top: 15px;
-                }
-            }
-            .checkbox-group {
-                color: #fff;
-                input{
-                    margin-left: 10px;
-                }
-            }
             button {
                 width: 100%;
                 height: 45px;

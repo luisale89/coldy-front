@@ -5,11 +5,11 @@ import * as serviceWorker from './serviceWorker';
 
 //include your index.scss file into the bundle
 import "./styles/index.scss";
-import "./fontawesome";
 
 // import "./styles/dashboard-main.scss";
 
 //include custom javascript code
+import "./fontawesome";
 // import "./websocket/test.js";
 
 ReactDOM.render(<Layout />, document.getElementById('root'));
