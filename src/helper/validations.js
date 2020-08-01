@@ -35,7 +35,7 @@ const validations  = {
         passw = typeof(passw) !== 'undefined' ? passw : "invalid";
 
         if (rePassw.test(passw)) {
-            return {valid: true, feedback: {class: fb_styles.valid, msg: "Ok"}}
+            return {valid: true, feedback: {class: fb_styles.valid, msg: "ok"}}
         } else {
             return {valid: false, feedback: {class: fb_styles.invalid, msg: "Contraseña inválida"}}
         }
@@ -44,9 +44,9 @@ const validations  = {
         const reText = /[^a-zA-Z -]/; //sin caracteres especiales
         
         if (reText.test(text)){
-            return {valid: false, feedback: {msg: "Caracter especial", class: fb_styles.invalid}}
+            return {valid: false, feedback: {class: fb_styles.invalid, msg: "Caracter especial"}}
         } else {
-            return {valid: false, feedback: {msg: "ok", class: fb_styles.valid}}
+            return {valid: true, feedback: {class: fb_styles.valid, msg: "ok"}}
         }
     }
 };

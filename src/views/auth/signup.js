@@ -132,7 +132,7 @@ export const SignUp = () => {
                     {/* pasword field */}
                     <div className="form-group">
                         <label>REPITE TU CONTRASEÑA</label>
-                        {/* <span className={state.rq_fields_fb.signup_repas.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_repas.msg}</span> */}
+                        <span className={state.rq_fields_fb.signup_repas.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_repas.msg}</span>
                         <input 
                             type= "password"
                             placeholder="Repite tu contraseña" 
@@ -143,6 +143,7 @@ export const SignUp = () => {
                             onBlur={check_field}
                             disabled={store.loading_API}
                             autoComplete="off"
+                            required
                         />
                     </div>
                     {/* submit button */}
