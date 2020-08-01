@@ -59,94 +59,98 @@ export const SignUp = () => {
         <div id="signup-view">
             <div className="signup-header">
                 {!store.loading_API && <a href="https://app.friotermia.com">Volver a friotermia</a>}
-                {!store.loading_API && <Link to="/ingreso" >¿Ya tienes cuenta? ingresa aquí</Link>}
+                {!store.loading_API && <Link to="/ingreso" >¿Ya tienes cuenta?</Link>}
             </div>
             <div className="signup-body">
-                <div className="app-logo">Coldy App</div>
+                <div className="app-logo">Coldy App - Regístro</div>
                 <form id="signup-form" onSubmit={handleSubmit} noValidate autoComplete="on">
-                    {/* first name field */}
-                    <div className="form-group">
-                        <label>NOMBRE</label>
-                        <span className={state.rq_fields_fb.signup_fname.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_fname.msg}</span>
-                        <input 
-                            type="text" 
-                            placeholder="Ingesa tu Nombre" 
-                            name="signup_fname"
-                            value={state.fields.signup_fname || ""}
-                            onChange={handleInputChange}
-                            onKeyPress={noSpace}
-                            onBlur={check_field}
-                            disabled={store.loading_API}
-                            required
-                        />
+                    <div className="form-inline">
+                        {/* first name field */}
+                        <div className="form-group">
+                            <label>NOMBRE</label>
+                            <span className={state.rq_fields_fb.signup_fname.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_fname.msg}</span>
+                            <input 
+                                type="text" 
+                                placeholder="Ingesa tu Nombre" 
+                                name="signup_fname"
+                                value={state.fields.signup_fname || ""}
+                                onChange={handleInputChange}
+                                onKeyPress={noSpace}
+                                onBlur={check_field}
+                                disabled={store.loading_API}
+                                required
+                            />
+                        </div>
+                        {/* last name field */}
+                        <div className="form-group">
+                            <label>APELLIDO</label>
+                            <span className={state.rq_fields_fb.signup_lname.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_lname.msg}</span>
+                            <input 
+                                type="text" 
+                                placeholder="Ingesa tu Apellido" 
+                                name="signup_lname"
+                                value={state.fields.signup_lname || ""}
+                                onChange={handleInputChange}
+                                onKeyPress={noSpace}
+                                onBlur={check_field}
+                                disabled={store.loading_API}
+                                required
+                            />
+                        </div>
                     </div>
-                    {/* first name field */}
-                    <div className="form-group">
-                        <label>APELLIDO</label>
-                        <span className={state.rq_fields_fb.signup_lname.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_lname.msg}</span>
-                        <input 
-                            type="text" 
-                            placeholder="Ingesa tu Apellido" 
-                            name="signup_lname"
-                            value={state.fields.signup_lname || ""}
-                            onChange={handleInputChange}
-                            onKeyPress={noSpace}
-                            onBlur={check_field}
-                            disabled={store.loading_API}
-                            required
-                        />
+                    <div className="form-column">
+                        {/* email field */}
+                        <div className="form-group">
+                            <label>CORREO ELECTRÓNICO</label>
+                            <span className={state.rq_fields_fb.signup_email.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_email.msg}</span>
+                            <input 
+                                type="email" 
+                                placeholder="Ingesa tu email" 
+                                name="signup_email"
+                                value={state.fields.signup_email || ""}
+                                onChange={handleInputChange}
+                                onKeyPress={noSpace}
+                                onBlur={check_field}
+                                disabled={store.loading_API}
+                                required
+                            />
+                        </div>
+                        {/* pasword field */}
+                        <div className="form-group">
+                            <label>CONTRASEÑA</label>
+                            <span className={state.rq_fields_fb.signup_passw.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_passw.msg}</span>
+                            <input 
+                                type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
+                                placeholder="Ingresa tu contraseña" 
+                                name="signup_passw"
+                                value={state.fields.signup_passw || ""}
+                                onKeyPress={noSpace}
+                                onChange={handleInputChange}
+                                onBlur={check_field}
+                                disabled={store.loading_API}
+                                autoComplete="off"
+                                required
+                            />
+                        </div>
+                        {/* pasword field */}
+                        <div className="form-group">
+                            <label>REPITE TU CONTRASEÑA</label>
+                            <span className={state.rq_fields_fb.signup_repas.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_repas.msg}</span>
+                            <input 
+                                type= "password"
+                                placeholder="Repite tu contraseña" 
+                                name="signup_repas"
+                                value={state.fields.signup_repas || ""}
+                                onKeyPress={noSpace}
+                                onChange={handleInputChange}
+                                onBlur={check_field}
+                                disabled={store.loading_API}
+                                autoComplete="off"
+                                required
+                            />
+                        </div>
+                        {/* submit button */}
                     </div>
-                    {/* email field */}
-                    <div className="form-group">
-                        <label>CORREO ELECTRÓNICO</label>
-                        <span className={state.rq_fields_fb.signup_email.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_email.msg}</span>
-                        <input 
-                            type="email" 
-                            placeholder="Ingesa tu email" 
-                            name="signup_email"
-                            value={state.fields.signup_email || ""}
-                            onChange={handleInputChange}
-                            onKeyPress={noSpace}
-                            onBlur={check_field}
-                            disabled={store.loading_API}
-                            required
-                        />
-                    </div>
-                    {/* pasword field */}
-                    <div className="form-group">
-                        <label>CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.signup_passw.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_passw.msg}</span>
-                        <input 
-                            type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
-                            placeholder="Ingresa tu contraseña" 
-                            name="signup_passw"
-                            value={state.fields.signup_passw || ""}
-                            onKeyPress={noSpace}
-                            onChange={handleInputChange}
-                            onBlur={check_field}
-                            disabled={store.loading_API}
-                            autoComplete="off"
-                            required
-                        />
-                    </div>
-                    {/* pasword field */}
-                    <div className="form-group">
-                        <label>REPITE TU CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.signup_repas.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_repas.msg}</span>
-                        <input 
-                            type= "password"
-                            placeholder="Repite tu contraseña" 
-                            name="signup_repas"
-                            value={state.fields.signup_repas || ""}
-                            onKeyPress={noSpace}
-                            onChange={handleInputChange}
-                            onBlur={check_field}
-                            disabled={store.loading_API}
-                            autoComplete="off"
-                            required
-                        />
-                    </div>
-                    {/* submit button */}
                     <button 
                         className="btn btn-success" 
                         type="submit" 

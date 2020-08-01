@@ -1,6 +1,7 @@
 .form-group {
     position: relative;
     width: 100%;
+    padding: 0px 5px;
     label {
         @include form-label(#fff)
     }
@@ -10,9 +11,22 @@
     }
     .invalid-tooltip {
         @include tooltip($color-warning, #fff);
-        right: 0px;
-        top: 15px;
+        right: 10px;
+        top: 5px;
     }
+}
+
+.form-inline {
+    display: flex;
+    flex-direction: column;
+    @media only screen and (min-width: 600px) {
+        flex-direction: row;
+    }
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
 }
 
 .checkbox-group {

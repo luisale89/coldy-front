@@ -56,7 +56,7 @@ export const Login = () => {
                 {!store.loading_API && <Link to="/registro" >¿No tienes cuenta aún?</Link>}
             </div>
             <div className="login-body">
-                <div className="app-logo">Coldy App</div>
+                <div className="app-logo">Coldy App - Ingreso</div>
                 <form id="login-form" onSubmit={handleSubmit} noValidate autoComplete="on">
                     {/* email field */}
                     <div className="form-group">
@@ -98,6 +98,7 @@ export const Login = () => {
                             name="remember_user"
                             checked = {state.fields.remember_user}
                             onChange = {handleInputChange}
+                            disabled= {store.loading_API}
                         />
                     </div>
                     {/* submit button */}

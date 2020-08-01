@@ -44,7 +44,7 @@ const validations  = {
         const reText = /[^a-zA-Z -]/; //sin caracteres especiales
         
         if (reText.test(text)){
-            return {valid: false, feedback: {class: fb_styles.invalid, msg: "Caracter especial"}}
+            return {valid: false, feedback: {class: fb_styles.invalid, msg: "Inválido"}}
         } else {
             return {valid: true, feedback: {class: fb_styles.valid, msg: "ok"}}
         }
@@ -60,7 +60,7 @@ export const validate_field = (event, rq_fields_fb) => {
         return Object.assign(rq_fields_fb, {[name]: {class: fb_styles.invalid, msg: "bug: invalid type"}})
 
     } else if (value.trim() === "") {
-        return Object.assign(rq_fields_fb, {[name]: {class: fb_styles.invalid, msg: "Campo requerido"}})
+        return Object.assign(rq_fields_fb, {[name]: {class: fb_styles.invalid, msg: "Requerido"}})
 
     } else {
         return Object.assign(rq_fields_fb, {[name]: validations[type](value).feedback})
@@ -78,7 +78,7 @@ export const validate_all = (form_id, rq_fields_fb) => { // will return an objec
 
         if (required) {
             if (value.trim() === "") { // si el campo está vacío:
-                feedback[name] = {class: fb_styles.invalid, msg: "Campo Requerido"};
+                feedback[name] = {class: fb_styles.invalid, msg: "Requerido"};
                 all_valid = false;
             } else if (!valid_types.includes(type)) { // si el tipo del campo es inválido -> bug
                 feedback[name] = {class: fb_styles.invalid, msg: "bug: invalid type"};
