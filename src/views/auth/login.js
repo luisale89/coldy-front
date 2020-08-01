@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { Context } from '../../store/appContext';
 import { validate_all, validate_field, fb_styles, noSpace } from '../../helper/validations';
 import { handleChange } from '../../helper/handlers';
-import { solid_icons as icons } from '../../helper/icons';
+import { Icons as icons } from '../../helper/icons';
 
 export const Login = () => {
 
@@ -61,7 +61,7 @@ export const Login = () => {
                     {/* email field */}
                     <div className="form-group">
                         <label htmlFor="login_email">CORREO ELECTRÓNICO</label>
-                        <span className={state.rq_fields_fb.login_email.class}>{icons.exclamation} {state.rq_fields_fb.login_email.msg}</span>
+                        <span className={state.rq_fields_fb.login_email.class}>{icons.solid.exclamation} {state.rq_fields_fb.login_email.msg}</span>
                         <input 
                             type="email" 
                             placeholder="Ingesa tu email" 
@@ -77,7 +77,7 @@ export const Login = () => {
                     {/* pasword field */}
                     <div className="form-group">
                         <label htmlFor="login_passw">CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.login_passw.class}>{icons.exclamation} {state.rq_fields_fb.login_passw.msg}</span>
+                        <span className={state.rq_fields_fb.login_passw.class}>{icons.solid.exclamation} {state.rq_fields_fb.login_passw.msg}</span>
                         <input 
                             type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
                             placeholder="Ingresa tu contraseña" 
@@ -105,7 +105,7 @@ export const Login = () => {
                         className="btn btn-success" 
                         type="submit" 
                         disabled={store.loading_API}>
-                            {store.loading_API ? <span>{icons.spinner} Cargando</span> : "Iniciar Sesión"}
+                            {store.loading_API ? <span>{icons.spin.dots} Cargando</span> : "Iniciar Sesión"}
                     </button>
                 </form>
             </div>
