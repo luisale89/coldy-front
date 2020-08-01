@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { Context } from '../../store/appContext';
 import { validate_all, validate_field, fb_styles, noSpace } from '../../helper/validations';
 import { handleChange } from '../../helper/handlers';
-import { solid_icons as icons } from '../../helper/icons';
+import { Icons as icons } from '../../helper/icons';
 
 export const SignUp = () => {
 
@@ -42,6 +42,7 @@ export const SignUp = () => {
             console.log(result);
         } else {
             console.log("no cumple");
+            console.log(feedback)
         };
     };
 
@@ -66,7 +67,7 @@ export const SignUp = () => {
                     {/* first name field */}
                     <div className="form-group">
                         <label>NOMBRE</label>
-                        <span className={state.rq_fields_fb.signup_fname.class}>{icons.exclamation} {state.rq_fields_fb.signup_fname.msg}</span>
+                        <span className={state.rq_fields_fb.signup_fname.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_fname.msg}</span>
                         <input 
                             type="text" 
                             placeholder="Ingesa tu Nombre" 
@@ -82,12 +83,12 @@ export const SignUp = () => {
                     {/* first name field */}
                     <div className="form-group">
                         <label>APELLIDO</label>
-                        <span className={state.rq_fields_fb.signup_lname.class}>{icons.exclamation} {state.rq_fields_fb.signup_lname.msg}</span>
+                        <span className={state.rq_fields_fb.signup_lname.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_lname.msg}</span>
                         <input 
                             type="text" 
                             placeholder="Ingesa tu Apellido" 
-                            name="signup_fname"
-                            value={state.fields.signup_fname || ""}
+                            name="signup_lname"
+                            value={state.fields.signup_lname || ""}
                             onChange={handleInputChange}
                             onKeyPress={noSpace}
                             onBlur={check_field}
@@ -98,7 +99,7 @@ export const SignUp = () => {
                     {/* email field */}
                     <div className="form-group">
                         <label>CORREO ELECTRÓNICO</label>
-                        <span className={state.rq_fields_fb.signup_email.class}>{icons.exclamation} {state.rq_fields_fb.signup_email.msg}</span>
+                        <span className={state.rq_fields_fb.signup_email.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_email.msg}</span>
                         <input 
                             type="email" 
                             placeholder="Ingesa tu email" 
@@ -114,7 +115,7 @@ export const SignUp = () => {
                     {/* pasword field */}
                     <div className="form-group">
                         <label>CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.signup_passw.class}>{icons.exclamation} {state.rq_fields_fb.signup_passw.msg}</span>
+                        <span className={state.rq_fields_fb.signup_passw.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_passw.msg}</span>
                         <input 
                             type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
                             placeholder="Ingresa tu contraseña" 
@@ -131,9 +132,9 @@ export const SignUp = () => {
                     {/* pasword field */}
                     <div className="form-group">
                         <label>REPITE TU CONTRASEÑA</label>
-                        <span className={state.rq_fields_fb.signup_repas.class}>{icons.exclamation} {state.rq_fields_fb.signup_repas.msg}</span>
+                        {/* <span className={state.rq_fields_fb.signup_repas.class}>{icons.solid.exclamation} {state.rq_fields_fb.signup_repas.msg}</span> */}
                         <input 
-                            type={state.password_type} //cambia para mostrar/esconder contraseña ingresada.
+                            type= "password"
                             placeholder="Repite tu contraseña" 
                             name="signup_repas"
                             value={state.fields.signup_repas || ""}
@@ -142,7 +143,6 @@ export const SignUp = () => {
                             onBlur={check_field}
                             disabled={store.loading_API}
                             autoComplete="off"
-                            required
                         />
                     </div>
                     {/* submit button */}
@@ -150,7 +150,7 @@ export const SignUp = () => {
                         className="btn btn-success" 
                         type="submit" 
                         disabled={store.loading_API}>
-                            {store.loading_API ? <span>{icons.spinner} Cargando</span> : "Iniciar Sesión"}
+                            {store.loading_API ? <span>{icons.spin.dots} Cargando</span> : "Registrarme"}
                     </button>
                 </form>
             </div>

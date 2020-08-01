@@ -53,7 +53,7 @@ export const Login = () => {
         <div id="login-view">
             <div className="login-header">
                 {!store.loading_API && <a href="https://app.friotermia.com">Volver a friotermia</a>}
-                {/* {!store.loading_API && <Link to="/registro" >¿No tienes cuenta aún?</Link>} */}
+                {!store.loading_API && <Link to="/registro" >¿No tienes cuenta aún?</Link>}
             </div>
             <div className="login-body">
                 <div className="app-logo">Coldy App</div>
